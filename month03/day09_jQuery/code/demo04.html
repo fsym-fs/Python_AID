@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        name: <input type="text" name="" id="">
+    </div>
+    <div>
+        pass: <input type="password" name="" id="">
+    </div>
+    <div>
+        <input id="read" type="checkbox" name="" id="" checked="checked">阅读并同意<a href="#"></a>
+    </div>
+    <button id="btn">提交</button>
+    <script>
+        $("#btn")[0].onclick = function(){
+            console.log($("#read").attr("checked"));
+            console.log($("#read").prop("checked"));
+        }
+    </script>
+</body>
+</html>
