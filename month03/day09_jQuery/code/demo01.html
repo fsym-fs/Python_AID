@@ -6,12 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="d1"></div>
-    <script>
+    <div id="d1">hello</div>
+    <!-- <script>
         $$("d1").innerHTML = "nihao";
         function $$(id){
             return document.getElementById(id);
         }
+    </script> -->
+    <!-- 引入 -->
+    <script src="js/jquery.min.js"></script>
+    <script>
+        // $("#d1").html("nihao");
+        var d1 = document.getElementById("d1");
+        //获取jQuery对象
+        var $d1 = $("#d1");
+        console.log(d1);
+        console.log($d1);
+        //DOM->jQuery
+        var $d2 = $(d1);
+        console.log($d2);
+        //DOM<-jQuery
+        var d2 = $d2[0];
+        console.log(d2);
     </script>
 </body>
 </html>

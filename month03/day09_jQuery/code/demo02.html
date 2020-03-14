@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1" class="c1"></div>
+    <p class="c1"></p>
+    <div id="parent">
+        <div class="f1">1</div>
+        <div>2</div>
+        <p>3</p>
+    </div>
+    <div id="pp">1111</div>
+    <script src="js/jquery.min.js"></script>
+    <script>
+        console.log($(".c1"));
+        $(".c1").html("hhhh");
+        console.log($(".c1")[0]);
+        console.log($("p"));
+        console.log($("#d1"));
+    </script>
+    <script>
+        $('#parent>.f1').html("Java");
+        //找兄弟节点,相连用+
+        $(".f1~p").css("color","red");
+        $(".f1+div").css("background-color","green");
+        var s = document.getElementById("pp");
+        s.style.backgroundColor="red";
+    </script>
+</body>
+</html>
