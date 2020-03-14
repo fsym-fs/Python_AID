@@ -1,0 +1,40 @@
+#d1
+{
+    width: 200px;
+    height: 200px;
+    background-color: antiquewhite;
+    transition: all 2s;
+}
+/* hove,鼠标滑过时的状态 */
+#d1:hover
+{
+    width: 500px;
+    height: 500px;
+    background-color: aquamarine;
+}
+#btn
+{
+    color: antiquewhite;
+    /* 去掉超链接默认的下划线 */
+    text-decoration: none;
+}
+/* 访问前 */
+#btn:link
+{
+    color: aquamarine;
+}
+/* 访问后 */
+#btn:visited
+{
+    color: blue;
+}
+#btn:hover
+{
+    text-decoration: underline;
+}
+/* 鼠标按住不放 */
+#btn:active
+{
+    color: red;
+}
+

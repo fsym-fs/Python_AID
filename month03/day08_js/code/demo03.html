@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #d1{
+            width: 200px;
+            height: 300px;
+            position: fixed;
+            right: 0;
+            bottom: -300px;
+            background-color: red;
+            /* 2秒内出现 */
+            transition: all 2s;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title"></h1>
+
+    <button id="btn2">start Interval</button>
+    <button id="btn">stop Interval</button>
+    <div id="d1"></div>
+    <script>
+
+        //设置定时器
+        // var timer = null;
+        // //stop
+        // var btn = document.getElementById("btn");
+        // btn.onclick = function () {
+        //     clearInterval(timer);
+        // }
+        // //启动
+        // var btn2 = document.getElementById("btn2");
+        // btn2.onclick = function () {
+        //     timer = setInterval(function () {
+        //         console.log("Hello");
+        //     }, 1000);
+        // }
+        //一次性定时器
+        var d1 = document.getElementById("d1");
+        setTimeout(function(){
+            d1.style="bottom:0;";
+        },3000)
+    </script>
+</body>
+
+</html>

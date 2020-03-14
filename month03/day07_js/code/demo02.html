@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .b1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <button>click me 1</button>
+    <button>click me 2</button>
+    <button class="b1">click me 3</button>
+    <button>click me 4</button>
+    <button>click me 5</button>
+    <button>click me 6</button>
+    <button>click me 7</button>
+    <button class="b1">click me 8</button>
+    <button>click me 9</button>
+    <button>click me 10</button>
+    <button>click me 11</button>
+    <button>click me 12</button>
+    <script>
+        var red = document.getElementsByClassName("b1");
+        function show() {
+            alert("red!")
+        }
+        for(var i=0;i<red.length;i++){
+            red[i].onclick = show;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function say(id) {
+            alert(id+" say Hello");
+        }
+    </script>
+</head>
+<body>
+    <button id="btn1" onclick="say(id)">单机按钮1</button>
+    <button id="btn2" onclick="">单机按钮2</button>
+    <script>
+        //通过id
+        var btn2 = document.getElementById('btn2');
+        // console.log(btn.id);
+        // btn2.onclick = function() {
+        //     alert("HHHHH");
+        // }
+        btn2.onclick = sayName;
+        //函数声明提前
+        function sayName() {
+            alert(btn2.id+" say");
+        }
+    </script>
+    <!-- 255,230,201
+        #ffe6c9
+
+        255,206,199
+        #ffcec7
+        width: 315px; height: 40px;background-color:#A5D97E
+     -->
+</body>
+</html>

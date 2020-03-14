@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1">555</div>
+    <ul id="list">
+        <li>白日依山尽</li>
+        <li>黄河入海流</li>
+        <li>欲穷千里目</li>
+        <li>更上一层楼</li>
+    </ul>
+    <script>
+        var h1 = document.createElement("h1");
+        var lis = document.getElementById("list");
+        console.log(h1);
+        h1.innerHTML="hello,world!";
+        h1.style.color = "red";
+        console.log(h1);
+        //追加到父元素
+        // document.body.appendChild(h1);
+        //插入到开头
+        // document.body.prepend(h1);
+        document.body.insertBefore(h1,lis);
+        //删除
+        document.body.removeChild(document.getElementById("d1"));
+    </script>
+</body>
+</html>

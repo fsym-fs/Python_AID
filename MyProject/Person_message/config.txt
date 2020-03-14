@@ -1,0 +1,5 @@
+1.-新增信息产业发展数据条目-Add_Views()-
+2.-查找数据-Find_Views()-
+3.-修改数据条目-Modify_Views()-
+4.-删除数据条目-Delete_Views()-
+5.-显示信息产业发展数据列表-Show_Views()-

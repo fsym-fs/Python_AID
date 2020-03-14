@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var m = prompt("输入一个月份:");
+        switch (m) {
+            case "1":
+            case "3":
+            case "5":
+            case "7":
+            case "8":
+            case "10":
+            case "12":
+                alert(m+"月有31天");
+                break;
+            case "2":
+                alert(m+"月有28天");
+                break;
+            case "4":
+            case "6":
+            case "9":
+            case "11":
+                alert(m+"月有30天");
+                break;
+            default:
+                alert("失败");
+                break;
+        }
+    </script>
+</body>
+</html>

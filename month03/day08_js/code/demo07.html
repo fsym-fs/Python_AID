@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1">555</div>
+    <ul id="list">
+        <li>白日依山尽</li>
+        <li>黄河入海流</li>
+        <li>欲穷千里目</li>
+        <li>更上一层楼</li>
+    </ul>
+    <script>
+        var d1 = document.getElementById("d1");
+        console.log(d1.innerText,d1.textContent);
+        // console.log(d1.nextElementSibling);
+        var lis = document.getElementById("list");
+        // console.log("1",lis.previousSibling);
+        // console.log("2",lis.previousElementSibling);
+        //父与子
+        console.log("3",lis.children,lis.childNodes[1].textContent);
+        console.log("4",lis.parentElement,lis.parentNode);
+    </script>
+</body>
+</html>

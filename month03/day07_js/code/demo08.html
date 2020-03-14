@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //正则表达式
+        var reg = /is/ig;
+        str = "this is test";
+        // test,有lastIndex
+        // 匹配一次会向后移动到查找到的结束位置（随匹配次数移动偏移量）
+        console.log(reg.test(str));
+        console.log(reg.test(str));
+        console.log(reg.test(str));
+        //回到初始位置
+        reg.lastIndex;
+        //默认只匹配一次，数组形式
+        var result = str.match(reg);
+        console.log(result);
+        //replace(regExp/subStr,newStr) 
+        // 作用 : 根据正则表达式或字符串查找相关内容并进行替换 
+        // 返回 : 替换后的字符串,不影响原始字符串
+        var reg1 = new RegExp('This','ig');
+        var newstr = str.replace(reg1,"that");
+        console.log(newstr);
+    </script>
+</body>
+</html>

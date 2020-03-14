@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            width: 100%;
+            height: auto;
+            border: 5px solid lemonchiffon;
+        }
+        #parent .inner{
+            float: left;
+            margin-left: 15%;
+        }
+        #parent .inner:hover{
+            background-color: azure;
+            cursor: pointer;
+        }
+        ul,li{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        #nav{
+            border: 1px solid red;
+            overflow: hidden;
+        }
+        .clear{
+            clear: both;
+        }
+        #nav li{
+            float: left;
+        }
+        #nav .first{
+            color: #666;
+            margin: 7px 10px;
+        }
+        #nav .item{
+            margin: 5px 15px;
+            padding: 2px 5px;
+        }
+        #nav .item:hover{
+            background-color: red;
+            color: #fff;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div class="inner">难度:</div>
+        <div class="inner">全部</div>
+        <div class="inner">初级</div>
+        <div class="inner">中级</div>
+        <div class="inner">高级</div>
+        <div class="clear"></div>
+    </div>
+    <ul id="nav">
+        <li class="first">难度</li>
+        <li class="item">全部</li>
+        <li class="item">初级</li>
+        <li class="item">中级</li>
+        <li class="item">高级</li>
+    </ul>
+</body>
+</html>

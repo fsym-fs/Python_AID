@@ -1,0 +1,2 @@
+(1, "展示商品", 'Show_Mall_function_Controlles("展示商品",1)'),
+(2, "展示商品", 'Show_Mall_function_Controlles("展示商品",2)'),

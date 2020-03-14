@@ -1,0 +1,4 @@
+"""
+test06_function
+"""
+

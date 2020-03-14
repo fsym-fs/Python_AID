@@ -1,0 +1,21 @@
+#classname
+{
+    height: auto;
+    text-align:center;
+    background-color: antiquewhite;
+}
+.test02
+{
+    height: 40px;
+    background-color: aquamarine;
+    text-align: center;
+}
+#classname > *
+{
+    background-color: blue;
+}
+body,div,#classname,.test02
+{
+    margin: 0;
+    padding: 0;
+}

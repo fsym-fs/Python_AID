@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var str = "shibw@tedu.cn";
+        var str2 = "2124_10|1977_5";
+        //1
+        l = str.indexOf("@");
+        var first_str = str.substring(0,l);
+        var second_str = str.substring(l+1);
+        console.log(first_str);
+        console.log(second_str);
+        //2
+        var arr = str2.split("|");
+        var first= arr[0].split("_");
+        var second = arr[1].split("_");
+        var first_id =  first[0];
+        var first_num = first[1];
+        var second_id =  second[0];
+        var second_num = second[1];
+        console.log(first_id,first_num);
+        console.log(second_id,second_num);
+    </script>
+
+</body>
+
+</html>
