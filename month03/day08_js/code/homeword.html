@@ -1,70 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        #main{
-            height: 200px;
-            box-sizing: border-box;
-            position: relative; 
-            clear: both;
+        #box{
+            width: 739px;
+            height: 419px;
+            position: relative;
         }
-        #container {
-            height: 200px;
-            background-color: red;
+        #box #ll, #box #rr{
             position: absolute;
-            clear: both;
-            /* left: 20%; */
+            top:50%;
+            margin-top:-20px;
         }
-
-        #container .c1 {
-            height: 100%;
-            width: 20%;
-            /* clear: both; */
-            /* position: absolute; */
-            float: right;
+        #box #ll{
+            left:0;
         }
-        #d2{
-            width: 40%;
-            height: 100%;
-            background-color: antiquewhite;
-            position: absolute;
+        #box #rr{
+            right: 0;
         }
-        #d3{
-            width: 40%;
-            height: 100%;
-            margin-left: 60%;
-            background-color: antiquewhite;
-            position: absolute;
-        }
-        #box #ll,#box
-        /* git reset --hard 658ae3a */
     </style>
 </head>
-
-<body>
-    <!-- <div id="main">
-        <div id="container">
-
-            <img src="imgs/gm1-6.jpg" class="c1" alt="">
-
-            <img src="imgs/gm2-6.jpg" class="c1" alt="">
-
-            <img src="imgs/gm3-6.jpg" class="c1" alt="">
-
-            <img src="imgs/gm4-6.jpg" class="c1" alt="">
-        </div>
-        <div id="d2"></div>
-        <div id="d3"></div>
-    </div> -->
+<body>   
+    <!-- 9:47~10:00 -->
     <div id="box">
         <img id="ll" src="imgs/l1-6.png" alt="">
         <img id="img" src="imgs/gm1-6.jpg" alt="">
         <img id="rr" src="imgs/r1-6.png" alt="">
     </div>
-</body>
+    <script>
+        var i = 1;//表示第一张图片
+        var ll = document.getElementById('ll');
+        var rr = document.getElementById('rr');
+        var img = document.getElementById('img');
+        //点击左侧按钮时的功能
+        ll.onclick = function(){
+            i--;
+            if(i==0){
+                i=5;
+            }
+            showimg(i);
+        }
+        rr.onclick = function(){
+            i++;
+            if(i==6){
+                i=1;
+            }
+            showimg(i);
+        }
 
+        //切换图片的功能     
+        function showimg(i){
+            var url = "";//保存路径
+            switch(i){
+                case 1:
+                    url = 'imgs/gm1-6.jpg';
+                    break;
+                case 2:
+                    url = 'imgs/gm2-6.jpg';
+                    break;
+                case 3:
+                    url = 'imgs/gm3-6.jpg';
+                    break;
+                case 4:
+                    url = 'imgs/gm4-6.jpg';
+                    break;
+                case 5:
+                    url = 'imgs/gm5-6.jpg';
+                    break;
+            }
+            img.src = url;
+        }
+        var timer = setInterval(function(){
+            i++;
+            if(i==6){
+                i=1;
+            }
+            showimg(i);
+        },1000)
+        var box = document.getElementById("box");
+        box.onmouseover = function(){
+            clearInterval(timer);
+        }
+    </script>
+</body>
 </html>
