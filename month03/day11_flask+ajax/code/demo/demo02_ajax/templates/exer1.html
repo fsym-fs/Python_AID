@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="uname">
+    <button id="btn">发送Ajax</button>
+    <h1 id="show"></h1>
+    <script>
+        //
+        var btn = document.getElementById('btn');
+        var uname = document.getElementById('uname');
+        btn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            var data = uname.value;
+            xhr.open('get', '/exer_server?uname=' + data, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var h1 = document.getElementById('show');
+                    h1.innerHTML = xhr.responseText;
+                }
+            }
+            xhr.send(null);
+        }
+
+    </script>
+</body>
+
+</html>

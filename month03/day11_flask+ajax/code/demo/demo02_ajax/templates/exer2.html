@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>注册用户</h1>
+    <div>
+        用户: <input type="text" id="uname">
+        <span id="msg" style="color: red;"></span>
+    </div>
+    <div>
+        密码: <input type="password" id="pwd">
+    </div>
+    <button id="btn">提交</button>
+    <script>
+        var btn = document.getElementById('btn');
+        var uname = document.getElementById('uname');
+        var msg = document.getElementById('msg');
+        var pwd = document.getElementById('pwd');
+        //当文本框的内容发生改变时，检测用户名
+        //组件失去焦点时触发（value值发生改变），uname.onchange=function(){} 
+        //btn.onclick=function(){}
+        uname.onchange = function () {
+            var xhr = new XMLHttpRequest();
+            var uname_data = uname.value;
+            var pwd_data = pwd.value;
+            xhr.open('get', '/exer2_server?uname=' + uname_data, true);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var result = xhr.responseText;
+                    if (result == "OK") {
+                        msg.style.color = "green";
+                    }
+                    else {
+                        msg.style.color = "red";
+                    }
+                    msg.innerText = result
+                }
+            }
+            xhr.send(null);
+        }
+    </script>
+</body>
+
+</html>

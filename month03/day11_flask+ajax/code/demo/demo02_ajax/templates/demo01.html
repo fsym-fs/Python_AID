@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>demo01.html</h2>
+    <script>
+        //创建xhr对象
+        var xhr = new XMLHttpRequest();
+        console.log(xhr);
+        //创建请求
+        //get形式,http://127.0.0.1:5000/server---->/server,是否异步
+        xhr.open('get', '/server', true);
+
+        //绑定事件
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 2) {
+                console.log("已发送请求!");
+            }
+            else if (xhr.readyState == 3) {
+                console.log("服务器端请求处理完毕，正在下载响应内容!");
+            }
+            else if (xhr.readyState == 4) {
+                console.log('响应数据全部下载完成');
+                if (xhr.status == 200) {
+                    //获取服务器端的响应结果
+                    console.log(xhr.responseText);
+                }
+            }
+        }
+
+        //发送请求
+        //get:send(null),post:send(请求数据)
+        xhr.send(null);
+    </script>
+</body>
+
+</html>
