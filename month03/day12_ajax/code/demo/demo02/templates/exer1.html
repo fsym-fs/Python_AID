@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>注册用户</h1>
+    <div>
+        姓名： <input type="text" id="uname">
+        <span id="msg"></span>
+    </div>
+    <div>
+        密码： <input type="password" id="pwd">
+    </div>
+    <button id="btn">提交</button>
+    <script src="../static/jquery.min.js"></script>
+    <script>
+        //当文本框的内容发生改变时  检测用户名
+        // 默认用户名不存在
+        var result = false
+        function checkname() {
+            var xhr = new XMLHttpRequest();
+            var data = $('#uname').val();
+            xhr.open('get', '/exer1_server?uname=' + data, false);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var data = JSON.parse(xhr.responseText).code;
+                    //1000表示用户名已存在
+                    //1001表示用户名不存在
+                    if (data == '1000') {
+                        result = true
+                        $('#msg').html('用户名已存在').css('color', 'red')
+                    } else {
+                        result = false
+                        $('#msg').html('OK').css('color', 'green')
+                    }
+                }
+            }
+            xhr.send(null);
+        }
+        $('#uname').change(checkname)
+        //为btn按钮添加功能 当按钮被点击时
+        // 向服务器5000/register提交数据
+        // post uname=xxx&pwd=xxx
+        $('#btn').click(function () {
+            if (result == true) {
+                alert('请修改用户名!')
+                $('#uname').val("");
+                $('#msg').html = "";
+                $('#pwd').val("");
+            }
+            else {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/exer1_server', true)
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        var data = xhr.responseText;
+                        data = JSON.parse(data);
+                        alert(data);
+                        window.location.reload();
+                    }
+                }
+                // //1.
+                // var data = "uname=" + $('#uname').val() + "&" + "pwd=" + $('#pwd').val();
+                // //设置Content-Type;
+                // //默认ajax post的Content-Type为 "text/plain;charset=utf-8"
+                // //指定数据类型为表单的数据类型发送
+                // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                // xhr.send(data)
+
+                //2.
+                //使用json格式
+                var json_obj = {
+                    "uname":$('#uname').val(),
+                    "pwd":$('#pwd').val()
+                }
+                //将json对象--->json字符串
+                var json_str = JSON.stringify(json_obj); 
+                //指定数据类型为json的数据类型发送
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(json_str)
+                
+
+            }
+        })
+    </script>
+</body>
+
+</html>
