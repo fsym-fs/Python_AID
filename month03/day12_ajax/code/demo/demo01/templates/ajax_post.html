@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../static/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" id="uname">
+    <button id="btn">click me</button>
+    <div id="show"></div>
+    <script>
+        $('#btn').click(function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open('post', '/post', true)
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.responseText)
+                }
+            }
+            var data = "uname=" + $('#uname').val()
+            //设置Content-Type;
+            //默认ajax post的Content-Type为 "text/plain;charset=utf-8"
+            //指定数据类型为表单的数据类型发送
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(data)
+        })
+    </script>
+</body>
+
+</html>
