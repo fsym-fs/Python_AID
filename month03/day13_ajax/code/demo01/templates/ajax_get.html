@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../static/jquery.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">chick</button>
+    <div id="show"></div>
+    <script>
+        $('#btn').click(function () {
+            var params = { uname: "Tom", age: 18 }
+            $.get('/get_server', params, function (response) {
+                console.log(response);
+                // var data = JSON.parse(response)
+                if (response.code==200){
+                    $('#show').html(response.msg).css('color','green');
+                }
+                else{
+                    $('#show').html(response.msg).css('color','red');
+                }
+            },'json')
+        })
+    </script>
+</body>
+
+</html>

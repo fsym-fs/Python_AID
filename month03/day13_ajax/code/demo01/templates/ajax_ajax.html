@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../static/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        name: <input type="text" id="uname">
+    </div>
+    <!-- <div>
+        age: <input type="text" id="age">
+    </div> -->
+    <!-- 设置默认隐藏 -->
+    <div id="loading" style="display: none;">
+        加载中.....
+    </div>
+    <button id="btn">click me(get)</button>
+    <button id="btn2">click me(post)</button>
+    <script>
+        $('#btn1').click(function () {
+            $.ajax({
+                url: "/ajax_server",
+                type: "get",
+                data: { uname: $('#uname').val() },
+                async: true,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res)
+                    $('#btn').removeAttr('disabled')
+                    $('#loading').hide()
+                },
+                error: function (err) {
+                    alert("Server is busy!")
+                    $('#btn').removeAttr('disabled')
+                    $('#loading').hide()
+                },
+                beforeSend: function () {
+                    //发送请求之前，禁用按钮
+                    $('#btn').attr('disabled', 'disabled')
+                    $('#loading').show(3000)
+                }
+            })
+        })
+
+        $('#btn2').click(function () {
+            $.ajax({
+                url: "/ajax_server",
+                type: "post",
+                data: JSON.stringify({ uname: $('#uname').val() }),
+                async: true,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res)
+                    $('#btn').removeAttr('disabled')
+                    $('#loading').hide()
+                },
+                error: function (err) {
+                    alert("Server is busy!")
+                    $('#btn').removeAttr('disabled')
+                    $('#loading').hide()
+                },
+                beforeSend: function () {
+                    //发送请求之前，禁用按钮
+                    $('#btn').attr('disabled', 'disabled')
+                    $('#loading').show(3000)
+                },
+                // 设置响应头格式
+                contentType: 'application/json'
+            })
+        })
+
+    </script>
+</body>
+
+</html>

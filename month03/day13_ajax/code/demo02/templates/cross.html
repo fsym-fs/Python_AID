@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../static/jquery.min.js"></script>
+</head>
+<body>
+    <button id="btn">click on</button>
+    <!-- <script>
+        $('#btn').click(function(){
+            $.ajax({
+                url:"http://127.0.0.1:5001/cross_serve",
+                type:'get',
+                success:function(res){
+                    console.log(res)
+                }
+            })
+        })
+    </script> -->
+    <!-- <script src="../static/demo01.js"></script>
+    <script src="http://127.0.0.1:5001/cross_server?name=Tom">
+    </script> -->
+    
+    <!-- 法一 -->
+    <script src="">
+        function print(res){
+            console.log(res)
+        }
+        //调用函数
+        // print("5001...")
+    </script>
+    <script src="http://127.0.0.1:5001/cross_serve"></script>
+</body>
+</html>
