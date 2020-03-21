@@ -10,7 +10,6 @@
     <title>demo</title>
     <style>
         div.container{
-            height: 500px;
             background-color: antiquewhite;
         }
         div.container-fluid{
@@ -18,19 +17,19 @@
             /* width: 60%; */
             background-color: aquamarine;
         }
-        .row div{
+        /* .row div{
             height: 30px;
             background-color: beige;
             border: 1px solid black;
             text-align: center;
-        }
+        } */
     </style>
 </head>
 
 <body>
     <div class="container-fluid"></div>
     <div class="container">
-        <h1>测试bootstarp样式</h1>
+        <h1 style="text-align: center;">测试bootstarp样式</h1>
         <div class="row">
             <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">col-lg-4</div>
             <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">col-lg-4</div>
@@ -41,11 +40,132 @@
             <div class="col-lg-6 col-xs-6 col-sm-6 col-md-6">col-lg-6</div>
         </div>
         <div class="row">
-            <div class="col-lg-8 col-xs-8 col-sm-8 col-md-8">col-lg-8</div>
+            <!-- hidden-xs  隐藏 -->
+            <div class="col-lg-8 col-md-8 col-sm-8 hidden-xs">col-lg-8</div>
             <div class="col-lg-4 col-xs-4 col-sm-4 col-md-4">col-lg-4</div>
         </div>
+        <h3>
+            small h3 eg
+            <small>
+                small in h3
+            </small>
+        </h3>
+        <p class="lead text-capitalize"><mark>Lorem</mark> ipsum dolor sit amet consectetur adipisicing elit. Inventore ex facilis eaque voluptates officiis. Cum, ea saepe, quas voluptas pariatur tempora reiciendis nam officiis animi soluta ratione accusamus aliquam vitae!</p>
+        <p class="text-right">Sint nisi consequuntur nostrum,<del>nulla aut corporis</del> temporibus cumque accusantium. Maiores facere debitis accusamus numquam dolorum obcaecati maxime. Hic, quasi neque. Dolorum, doloribus officiis vero dolore dignissimos quisquam eum tenetur!</p>
+        <p class="text-justify">Fugiat eligendi quo modi, sed similique in, dicta hic deleniti consequatur atque magnam numquam eveniet excepturi dolores autem, totam ratione qui deserunt enim voluptate quidem delectus eum! Laudantium, necessitatibus impedit.</p>
+        <!-- 无用文本 -->
+        <s>This line of text is meant to be treated as no longer accurate.</s>
+        <!-- 引用  class="blockquote-reverse"设置右对齐-->
+        <blockquote class="blockquote-reverse">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+        </blockquote>
+        <ul class="list-unstyled list-inline">
+            <li>demo01</li>
+            <li>demo02</li>
+            <li>demo03</li>
+            <li>demo04</li>
+        </ul>
+        <dl class="dl-horizontal">
+            <dt>title</dt>
+            <dd>内容</dd>
+            <dt>title</dt>
+            <dd>内容</dd>
+            <dt>title</dt>
+            <dd>内容</dd>
+        </dl>
+        <p><kbd><kbd>ctrl</kbd> + <kbd>c</kbd></kbd></p>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr class="active">
+                    <th class="success">1</th>
+                    <th>2</th>
+                    <th>3</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="sucess">
+                    <td>1912</td>
+                    <td>1912</td>
+                    <td>1912</td>
+                </tr>
+                <tr class="info">
+                    <td>1912</td>
+                    <td>1912</td>
+                    <td>1912</td>
+                </tr>
+                <tr class="warning">
+                    <td>1912</td>
+                    <td>1912</td>
+                    <td>1912</td>
+                </tr>
+                <tr class="danger">
+                    <td>1912</td>
+                    <td>1912</td>
+                    <td>1912</td>
+                </tr>
+            </tbody>
+        </table>
+        <!-- form -->
+        <form>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputFile">File input</label>
+              <input type="file" id="exampleInputFile">
+              <p class="help-block">Example block-level help text here.</p>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Check me out
+              </label>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <hr>
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <img src="../static/img/news-img-1.jpg" style="width: 100%; height: 300px;">
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <br>
+                <br>
+                <form action="">
+                    <div class="form-group">
+                        <label for="uname">姓名:</label>
+                        <input class="form-control" type="text" id="uname" name="uname">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">密码:</label>
+                        <input class="form-control" type="password" id="pwd" name="pwd">
+                    </div>
+                    <div class="form-group" style="text-align: center;">
+                        <label>
+                            <input type="checkbox" name="" id="">
+                            click me
+                        </label>
+                    </div>
+                    <button class="btn btn-info center-block">提交</button>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <select class="form-control">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </select>
+        <hr>
     </div>
-    <!-- <div class="container-fluid"></div> -->
+    <div class="container-fluid"></div>
 </body>
 
 </html>
