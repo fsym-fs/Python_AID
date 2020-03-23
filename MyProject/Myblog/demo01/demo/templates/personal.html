@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://cdn.staticfile.org/semantic-ui/2.2.7/semantic.min.js"></script>
+        <link href="http://cdn.staticfile.org/semantic-ui/2.2.7/semantic.min.css" rel="stylesheet">
+
+        <style type="text/css">
+            .ui.segment.container {
+                width:700px;
+            }
+
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+
+            body {
+                background:url({% static 'images/about.gif'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+            .ui.container.nav {
+                width: 50%;
+                height: 10%;
+            }
+        </style>
+        <script>
+            $(document).ready(function() {
+                $('.tabular.menu .item').tab(); // [2] 使能够点击切换 tab
+            });
+            function myFunction()
+            {
+                alert("Hello World!");
+            }
+        </script>
+    </head>
+    <body>
+        <div class="ui inverted vertical grey segment" style="height: auto;background-image: url({% static 'images/bghead.jpg'%});">
+                <div class="ui container nav">
+                    <div class="ui borderless text four item menu ">
+                        <a class="item" href="http://127.0.0.1:8000/index/"  style="color:GhostWhite;">
+                            首页
+                        </a>
+                        <div class="ui dropdown simple item"  style="color: GhostWhite;">
+                            分类
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=life" style="color: GhostWhite;">生活</a>
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=tech" style="color: GhostWhite;">技术</a>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/personal/">
+                            个人博客
+                        </a>
+                        <div class="item">
+                            <div class="ui large icon input">
+                                <input type="text" placeholder="文章标题">
+                                    <i class="search link icon"></i>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/write/">
+                            随心说
+                        </a>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/about/">
+                            关于我
+                        </a>
+                        {% if massage_list %}
+                            <div class="item">
+                                <h1 class="ui inverted header">
+                                    <div class="ui avatar image">
+                                        {% if massage_list.profile_image %}
+                                            <img src="/profile_image/{{massage_list.profile_image}}"/>
+                                        {% else %}
+                                            <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                        {% endif %}
+                                    </div>
+                                    <a href="http://127.0.0.1:8000/about/">
+                                        <span style="padding-left;:1px; color:MistyRose;">{{ massage_list.name }}</span>
+                                    </a>
+                                </h1>
+                            </div>
+                            <div class="item">
+                                    <form method="POST">
+                                            {{ consumer_form }}
+                                            {% csrf_token %}
+                                            <button type="submit" class="ui inverted circular button" name="exit" >退出</button>
+                                        </form>
+                            </div>
+                        {% else %}
+                            <div class="item">
+                                <h1 class="ui inverted header">
+                                    <a href="http://127.0.0.1:8000/about/">
+                                        <span style="padding-left;:1px; color:MistyRose;">游客</span>
+                                    </a>
+                                </h1>
+                            </div>
+                            <div class="item">
+                                <a href="http://127.0.0.1:8000/login/" class="ui inverted circular button">注册/登录</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui  segment padded container" style="height: auto; width: 70%;">
+                <p class="ui huge header center aligned">我的博客</p>
+                {% if massage_list %}
+                <p class="ui large header center aligned">个人id:{{ massage_list.id }}</p>
+                {% endif %}
+                <div class="ui divider"></div>
+                    <div class="ui raised centered card" style="width: 100%;">
+                        <!-- <div class="content"> -->
+                        {% if massage_list %}
+                            <div class="ui top attached tabular menu">
+                                <a class="item active" data-tab="first">所有博客</a>
+                                <a class="item" data-tab="second">技术类博客</a>
+                                <a class="item" data-tab="third">生活类博客</a>
+                            </div>
+                            <div class="ui bottom attached tab segment" data-tab="first">
+                                {% for title in title_all %}
+                                    <div class="ui container vertical segment">
+                                        <a href="{% url 'detail' title.id %}">
+                                            <h1 class="ui header orange">
+                                                {{ title.headline }}
+                                            </h1>
+                                        </a>
+            
+                                        <i class="icon grey small unhide">10,000</i>
+                                        <p style="color:Azure;">
+                                                <i class="angle tiny double grey right icon">READMORE</i>
+                                        </p>
+                                            <div class="content">
+                                                <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                                <a href="#" class="author PeachPuff" style="font-size: 27px; color: #FFE4E1;">&nbsp;&nbsp;&nbsp;{{ title.name }}</a>
+                                                <div class="metadata">
+                                                    <div class="date">两天前</div>
+                                                </div>
+                                            </div>
+                                        <div class="ui mini  tag label">
+                                            {{ title.tag}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                            </div>
+                            <div class="ui bottom attached tab segment" data-tab="second">
+                                {% for title in title_Tech %}
+                                    <div class="ui container vertical segment">
+                                        <a href="{% url 'detail' title.id %}">
+                                            <h1 class="ui header orange">
+                                                {{ title.headline }}
+                                            </h1>
+                                        </a>
+            
+                                        <i class="icon grey small unhide">10,000</i>
+                                        <p style="color:Azure;">
+                                                <i class="angle tiny double grey right icon">READMORE</i>
+                                        </p>
+                                            <div class="content">
+                                                <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                                <a href="#" class="author PeachPuff" style="font-size: 27px; color: #FFE4E1;">&nbsp;&nbsp;&nbsp;{{ title.name }}</a>
+                                                <div class="metadata">
+                                                    <div class="date">两天前</div>
+                                                </div>
+                                            </div>
+                                        <div class="ui mini  tag label">
+                                            {{ title.tag}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                            </div>
+                            <div class="ui bottom attached tab segment" data-tab="third">
+                                {% for title in title_Life %}
+                                    <div class="ui container vertical segment">
+                                        <a href="{% url 'detail' title.id %}">
+                                            <h1 class="ui header orange">
+                                                {{ title.headline }}
+                                            </h1>
+                                        </a>
+            
+                                        <i class="icon grey small unhide">10,000</i>
+                                        <p style="color:Azure;">
+                                                <i class="angle tiny double grey right icon">READMORE</i>
+                                        </p>
+                                            <div class="content">
+                                                <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                                <a href="#" class="author PeachPuff" style="font-size: 27px; color: #FFE4E1;">&nbsp;&nbsp;&nbsp;{{ title.name }}</a>
+                                                <div class="metadata">
+                                                    <div class="date">两天前</div>
+                                                </div>
+                                            </div>
+                                        <div class="ui mini  tag label">
+                                            {{ title.tag}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                {% endfor %}
+                            </div>
+                        <!-- </div> -->
+                    {% endif %}
+                    </div>
+            </div>
+            <div class="ui divider"></div>
+            <!-- <div class="ui pointing menu">
+                    <a class="active item">
+                      主页
+                    </a>
+                    <a class="item">
+                      信息
+                    </a>
+                    <a class="item">
+                      朋友
+                    </a>
+                    <div class="right menu">
+                      <div class="item">
+                        <div class="ui transparent icon input">
+                          <input type="text" placeholder="搜索...">
+                          <i class="search link icon"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="ui segment">
+                    <p></p>
+                  </div> -->
+    </body>
+</html>

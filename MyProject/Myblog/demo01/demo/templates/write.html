@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://cdn.staticfile.org/semantic-ui/2.2.7/semantic.min.js"></script>
+        <link href="http://cdn.staticfile.org/semantic-ui/2.2.7/semantic.min.css" rel="stylesheet">
+
+        <style type="text/css">
+            .ui.segment.container {
+                width:700px;
+            }
+
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+
+            body {
+                background:url({% static 'images/timg.jpg'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+            .ui.container.nav {
+                width: 50%;
+                height: 10%;
+            }
+        </style>
+        <script>
+            $(document).ready(function() {
+                $('.tabular.menu .item').tab(); // [2] 使能够点击切换 tab
+            });
+        </script>
+    </head>
+    <body>
+        <div class="ui inverted vertical grey segment" style="height: auto;background-image: url({% static 'images/bghead.jpg'%});">
+                <div class="ui container nav">
+                    <div class="ui borderless text four item menu ">
+                        <a class="item" href="http://127.0.0.1:8000/index/"  style="color:GhostWhite;">
+                            首页
+                        </a>
+                        <div class="ui dropdown simple item"  style="color: GhostWhite;">
+                            分类
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=life" style="color: GhostWhite;">生活</a>
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=tech" style="color: GhostWhite;">技术</a>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/personal/">
+                            个人博客
+                        </a>
+                        <div class="item">
+                            <div class="ui large icon input">
+                                <input type="text" placeholder="文章标题">
+                                    <i class="search link icon"></i>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/write/">
+                            随心说
+                        </a>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/about/">
+                            关于我
+                        </a>
+                        {% if massage_list %}
+                            <div class="item">
+                                <h1 class="ui inverted header">
+                                    <div class="ui avatar image">
+                                        {% if massage_list.profile_image %}
+                                            <img src="/profile_image/{{massage_list.profile_image}}"/>
+                                        {% else %}
+                                            <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                        {% endif %}
+                                    </div>
+                                    <a href="http://127.0.0.1:8000/about/">
+                                        <span style="padding-left;:1px; color:MistyRose;">{{ massage_list.name }}</span>
+                                    </a>
+                                </h1>
+                            </div>
+                            <div class="item">
+                                    <form method="POST">
+                                            {{ consumer_form }}
+                                            {% csrf_token %}
+                                            <button type="submit" class="ui inverted circular button" name="exit" >退出</button>
+                                        </form>
+                            </div>
+                        {% else %}
+                            <div class="item">
+                                <h1 class="ui inverted header">
+                                    <a href="http://127.0.0.1:8000/about/">
+                                        <span style="padding-left;:1px; color:MistyRose;">游客</span>
+                                    </a>
+                                </h1>
+                            </div>
+                            <div class="item">
+                                <a href="http://127.0.0.1:8000/login/" class="ui inverted circular button">注册/登录</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui  segment very padded center aligned container " style="height: auto; width: 50%;">
+                <p class="ui huge violet header center aligned ">随&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;心&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说</p>
+                {% if massage_list %}
+                <p class="ui large brown header center aligned">个人id:{{ massage_list.id }}</p>
+                <p class="ui Medium gary header right aligned">作者:{{ massage_list.name }}</p>
+                {% endif %}
+                <div class="ui divider"></div>
+                <div class="ui padded container">
+                    {% if massage_list %}
+                        <form class="ui error small form" method="POST">
+                            {% if writeform.errors %}
+                            <div class="ui error message">
+                                {{ writeform.errors }}
+                            </div>
+        
+                            {% for field in writeform %}
+                                <div class="{{ field.errors|yesno:'error, '}} field">
+                                    {{ field.label }}
+                                    {{ field }}
+                                </div>
+                            {% endfor %}
+            
+                            {% else %}
+                                {% for field in writeform %}
+                                    <div class="field">
+                                        {{ field.label }}
+                                        {{ field }}
+                                    </div>
+                                {% endfor %}
+            
+                            {% endif %}
+                            {% csrf_token %}
+                            <div class="ui divider"></div>
+                            <button type="reset"" class="ui left floated inverted teal circular button" name="reset" >清除</button>
+                            <button type="submit" class="ui center floated inverted violet circular button" name="input" >发布</button>
+                            <a class="ui right floated inverted brown circular button" name="return" href="http://127.0.0.1:8000/index/">返回</a>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="ui divider"></div>
+    </body>
+</html>

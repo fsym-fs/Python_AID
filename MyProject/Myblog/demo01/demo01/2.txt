@@ -1,0 +1,341 @@
+from django.shortcuts import render, HttpResponse,redirect,Http404#导入http接收和输出的模块
+from demo.models import People, Aritcle, Comment   #导入定义数据库模块
+from django.template import Context, Template#导入模板用于渲染，添加到网页中
+from demo.form import CommentForm
+from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
+
+# Create your views here.
+def first_try(request):
+    person= People(name='Spock', job='officer')#创建一个数据库里创建的表的对象，参数为表的内容
+    html_string = '''
+        <html>
+        <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.css" media="screen" title="no title" charset="utf-8"/>
+        </head>
+        <body>
+            <h1 class="ui center aligned icon header">
+                <i class="hand spock icon"></i>
+                Hello, {{ person.name }}
+            </h1>
+        </body>
+        </html> 
+    '''#创建要渲染的字符串，用于写入html代码，{{xxx}}是参数
+    t = Template(html_string)#将字符串转变为模板
+    c = Context({'person': person})#将数据库的数据载入模板
+    web_page= t.render(c)#将数据渲染入模板，并且保存在web_page中
+    return HttpResponse(web_page)#输出网页对象
+
+
+# Create your views here.
+def index(request):
+    # print(request)
+    # print(dir(request))
+    # print(type(request))
+    queryset = request.GET.get('tag')
+    # print(queruset)
+    if queryset:
+        article_list = Aritcle.objects.filter(tag = queryset)#查找出所有tag为所要的参数的文章
+    else:
+        article_list = Aritcle.objects.all()#变量article_list储存Article所有的文章
+    context = {}#新建字典
+    page_robot = Paginator(article_list,3)#创建一个分页器，每页3个内容
+    num = request.GET.get('page')
+    # article_list = page_robot.page(request.GET.get('page'))#传递一个页数以跳转到想要的页数
+
+    try:
+        article_list = page_robot.page(num)
+    except EmptyPage:
+        article_list = page_robot.page(page_robot.num_pages)
+        # raise Http404("没有本页!")
+    except PageNotAnInteger:
+        article_list = page_robot.page(1)
+
+    context['article_list'] = article_list #字典context中的article_list键（html中通过检索键提取文章内容）对应article_list变量的值
+    index_page = render(request, 'first_web_2.html', context)
+    return index_page
+
+def detail(request, page_num):
+    a = Aritcle.objects.get(id = page_num)
+    if request.method == 'GET':
+        form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)#表单绑定，将post里的数据绑定到CommentForm
+        #判断表单里的数据是否校验通过
+        if form.is_valid():#校验通过的数据会存储在form.cleaned_data中
+            name = form.cleaned_data['name']#取出name
+            comment = form.cleaned_data['comment']#取出comment
+            c = Comment(name = name, comment = comment, belong_to=a)#将数据载入实例对象
+            c.save()#储存实例对象，但不添加进数据库
+            return redirect(to = 'detail', page_num=page_num)#重定向到url中的name为detial的网页
+    context = {}
+    best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+    if best_comment:
+        context['best_comment'] = best_comment[0]
+    aritcle = Aritcle.objects.get(id = page_num)
+    context['article'] = aritcle
+    # context['comment_list'] = comment_list
+    context['form'] = form
+    return render(request,'detail.html',context)
+
+# def detail(request, page_num):
+#     context = {}
+#     form = CommentForm()
+#     a = Aritcle.objects.get(id = page_num)
+#     best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+#     if best_comment:
+#         context['best_comment'] = best_comment[0]
+#     aritcle = Aritcle.objects.get(id = page_num)
+#     context['article'] = aritcle
+#     # context['comment_list'] = comment_list
+#     context['form'] = form
+#     return render(request,'detail.html',context)
+
+# def detail_comment(request, page_num):
+#     form = CommentForm(request.POST)#表单绑定，将post里的数据绑定到CommentForm
+#     if form.is_valid():#校验通过的数据会存储在form.cleaned_data中
+#         a = Aritcle.objects.get(id = page_num)
+#         name = form.cleaned_data['name']#取出name
+#         comment = form.cleaned_data['comment']#取出comment
+#         c = Comment(name = name, comment = comment, belong_to=a)#将数据载入实例对象
+#         c.save()#储存实例对象，但不添加进数据库
+#         return redirect(to = 'detail', page_num=page_num)#重定向到url中的name为detial的网页
+
+
+
+from django import forms
+from django.core.exceptions import ValidationError
+def words(comment):
+    if len(comment) < 10:
+        raise ValidationError('评论字数不能小于10')
+def notusewords(comment):
+    if '操' in comment:
+        raise ValidationError('错误字符')
+
+class CommentForm(forms.Form):
+    name = forms.CharField(max_length=50)
+    comment = forms.CharField(
+        widget = forms.Textarea(),
+        error_messages = { 'required':"评论的内容不能为空!" },#设置为空时的报错信息
+        validators=[words, notusewords],#自定义错误类型
+    )#设置表单的的样式为Textarea
+
+
+
+
+
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+        <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+        <script src="http://cdn.staticfile.org/semantic-ui/2.2.7/semantic.min.js"></script>
+        <link href="http://cdn.staticfile.org/semantic-ui/2.2.7/semantic.min.css" rel="stylesheet">
+
+        <style type="text/css">
+            .ui.segment.container {
+                width:700px;
+            }
+
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+
+            body {
+                background:url({% static 'images/about.gif'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+            .ui.container.nav {
+                width: 50%;
+                height: 10%;
+            }
+            /* .main
+            {
+                width: 77%;
+                MARGIN-RIGHT: auto; 
+                MARGIN-LEFT: auto;
+                background:url({% static 'img/21.jpg'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            } */
+
+        </style>
+        <script>
+            $(document).ready(function() {
+                $('.tabular.menu .item').tab(); // [2] 使能够点击切换 tab
+            });
+        </script>
+    </head>
+    <body>
+        <div class="ui inverted vertical grey segment" style="height: auto;background-image: url({% static 'images/bghead.jpg'%});">
+                <div class="ui container nav">
+                    <div class="ui borderless text four item menu ">
+                        <a class="item" href="http://127.0.0.1:8000/index/"  style="color:GhostWhite;">
+                            首页
+                        </a>
+                        <div class="ui dropdown simple item"  style="color: GhostWhite;">
+                            分类
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=life" style="color: GhostWhite;">生活</a>
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=tech" style="color: GhostWhite;">技术</a>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;">
+                            个人博客
+                        </a>
+                        <div class="item">
+                            <div class="ui large icon input">
+                                <input type="text" placeholder="文章标题">
+                                    <i class="search link icon"></i>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;">
+                            随心说
+                        </a>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/about/">
+                            关于我
+                        </a>
+                        <!-- <div class="item">
+                            <img class="ui circular image" src="{% static 'img/21.jpg'%}" height="40px" width="40px">
+                        </div> -->
+                        
+                                {% if request.user.is_authenticated %}
+                                    <div class="item">
+                                        <h1 class="ui inverted header">
+                                            <div class="ui avatar image">
+                                                {% if request.user.profile.profile_image %}
+                                                    <img src="/{{ request.user.profile.profile_image }}"/>
+                                                {% else %}
+                                                    <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                                {% endif %}
+                                            </div>
+                                            <span style="padding-left;:1px; color:MistyRose;">{{ request.user.username }}</span>
+                                        </h1>
+                                    </div>
+                                    <div class="item">
+                                        <a href="http://127.0.0.1:8000/register/" class="ui inverted circular button">退出</a>
+                                    </div>
+                                {% else %}
+                                    <div class="item">
+                                        <h5 class="ui inverted header">
+                                            <span style="margin-right:20px;">{{ request.user.username }}</span>
+                                            <div class="ui mini circular image">
+                                                <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                            </div>
+                                        </h5>
+                                    </div>
+                                    <div class="item">
+                                        <a href="http://127.0.0.1:8000/login/" class="ui inverted circular button">注册/登录</a>
+                                    </div>
+                                {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+            <div class="ui  segment padded container" style="height: auto;">
+                <p class="ui huge header center aligned">个人资料</p>
+                <p class="ui large header center aligned">ID：weixin_44679856</p>
+                <div class="ui divider"></div>
+                    <div class="ui centered card">
+                        <div class="image">
+                            <img class="ui image" src="{% static 'img/11.gif'%}" style="height: 257px;">
+                        </div>
+                        <div class="content">
+                        {% for massage in massage_list %}
+                            <div class="ui top attached tabular menu">
+                                <a class="item active" data-tab="first">个人信息</a>
+                                <a class="item" data-tab="second">修改信息</a>
+                                <!-- <a class="item active" data-tab="third">第三</a> -->
+                            </div>
+                            <div class="ui bottom attached tab segment" data-tab="first">
+                                <a class="header">
+                                    <h>昵称:</h>
+                                    <h style="margin-left: 27px;">{{ massage.name }}</h>
+                                </a>
+                                <p></p>
+                                <div class="meta">
+                                    <span class="date">
+                                        <h >Email:</h>
+                                        <h style="margin-left: 27px;">{{ massage.Email }}</h>
+                                    </span>
+                                </div>
+                                <p></p>
+                                <div class="meta">
+                                    <span class="date">
+                                        <h>生日:</h>
+                                        <h style="margin-left: 27px;">{{ massage.birth }}</h>
+                                    </span>
+                                </div>
+                                <p></p>
+                                <div class="meta">
+                                    <span class="date">
+                                        <h>实名:</h>
+                                        <h style="margin-left: 27px;">{{ massage.实名 }}</h>
+                                    </span>
+                                </div>
+                                <p></p>
+                                <div class="description">
+                                    <h>个性签名:</h>
+                                    <h style="margin-left: 27px;">{{ massage.个性签名 }}</h>
+                                </div>
+                                <p></p>
+                            </div>
+                            <div class="ui bottom attached tab segment" data-tab="second">
+                                <form class="ui error tiny form"  method="post">
+                                    {% if form.errors %}
+                                        <div class="ui error message">
+                                            {{ form.errors }}
+                                        </div>
+                    
+                                        {% for field in form %}
+                                            <div class="{{ field.errors|yesno:'error, '}} field">
+                                                {{ field.label }}
+                                                {{ field }}
+                                            </div>
+                                        {% endfor %}
+                    
+                                    {% else %}
+                                        {% for field in form %}
+                                            <div class="field">
+                                                {{ field.label }}
+                                                {{ field }}
+                                            </div>
+                                        {% endfor %}
+                    
+                                    {% endif %}
+                                    <!-- 用于自我验证个人的信息 -->
+                                    {% csrf_token %}
+                
+                                    <div>
+                                        <button type="submit" class="ui blue button" >发布</button>
+                                        <a href="http://127.0.0.1:8000/about/">
+                                            <button type="button" class="ui right floated brown button" >返回</button>
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- <div class="extra content">
+                            <a>
+                                <i class="user icon"></i>
+                                22 Friends
+                            </a>
+                        </div> -->
+                    {% endfor %}
+                    </div>
+                <!-- <div class="ui center aligned very padded vertical segment container">
+                    <button class="ui button center aligned">编辑</button>
+                </div> -->
+            </div>
+            <div class="ui divider"></div>
+    </body>
+</html>

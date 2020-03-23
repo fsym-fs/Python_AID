@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}" media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+
+
+        <style type="text/css">
+            .ui.segment.container {
+                width:700px;
+            }
+
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+
+            body {
+                background:url({% static 'images/star_banner.jpg'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+            .ui.container.nav {
+                width: 50%;
+                height: 10%;
+            }
+            .main
+            {
+                width: 77%;
+                MARGIN-RIGHT: auto; 
+                MARGIN-LEFT: auto;
+                background:url({% static 'img/21.jpg'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="ui inverted vertical grey segment" style="height: auto;background-image: url({% static 'images/bghead.jpg'%});">
+                <div class="ui container nav">
+                    <div class="ui borderless text four item menu ">
+                        <a class="item" href="http://127.0.0.1:8000/index/"  style="color:GhostWhite;">
+                            首页
+                        </a>
+                        <div class="ui dropdown simple item"  style="color: GhostWhite;">
+                            分类
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=life" style="color: GhostWhite;">生活</a>
+                                <a class="item" href="http://127.0.0.1:8000/index/?tag=tech" style="color: GhostWhite;">技术</a>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/personal/">
+                            个人博客
+                        </a>
+                        <div class="item">
+                            <div class="ui large icon input">
+                                <input type="text" placeholder="文章标题">
+                                    <i class="search link icon"></i>
+                            </div>
+                        </div>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/write/">
+                            随心说
+                        </a>
+                        <a class="item" style="color: GhostWhite;" href="http://127.0.0.1:8000/about/">
+                            关于我
+                        </a>
+                        <!-- <div class="item">
+                            <img class="ui circular image" src="{% static 'img/21.jpg'%}" height="40px" width="40px">
+                        </div> -->
+                        
+                        {% if massage_list %}
+                        <div class="item">
+                            <h1 class="ui inverted header">
+                                <div class="ui avatar image">
+                                    {% if massage_list.profile_image %}
+                                        <img src="/profile_image/{{massage_list.profile_image}}"/>
+                                    {% else %}
+                                        <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                    {% endif %}
+                                </div>
+                                <a href="http://127.0.0.1:8000/about/">
+                                    <span style="padding-left;:1px; color:MistyRose;">{{ massage_list.name }}</span>
+                                </a>
+                            </h1>
+                        </div>
+                        <div class="item">
+                                <form method="POST">
+                                    {{ consumer_form }}
+                                    {% csrf_token %}
+                                    <button type="submit" class="ui inverted circular button" name="exit">退出</button>
+                                </form>
+                                
+                                <!-- <a href="http://127.0.0.1:8000/register/" class="ui inverted circular button" onclick="myFunction()">退出</a> -->
+                        </div>
+                    {% else %}
+                        <div class="item">
+                            <h1 class="ui inverted header">
+                                <!-- <div class="ui avatar image">
+                                    <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                </div> -->
+                                <a href="http://127.0.0.1:8000/about/">
+                                    <span style="padding-left;:1px; color:MistyRose;">游客</span>
+                                </a>
+                            </h1>
+                        </div>
+                        <!-- <div class="item">
+                            <h5 class="ui inverted header">
+                                <span style="margin-right:20px;">{{ request.user.username }}</span>
+                                <div class="ui mini circular image">
+                                    <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                </div>
+                            </h5>
+                        </div> -->
+                        <div class="item">
+                            <a href="http://127.0.0.1:8000/login/" class="ui inverted circular button">注册/登录</a>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="ui divider"></div>
+        <div class="ui image">
+            <img src="" alt="" />
+        </div>
+        <div class="ui  segment padded container" >
+            <h1 class="ui header" style="font-family:'Oswald', sans-serif;font-size:40px">
+                {{ article.headline }}
+            </h1>
+            <h3 class="ui right aligned header">作者：{{ article.name }}</h3>
+            <p>
+                {{ article.content }}
+            </p>
+        </div>
+
+        <!-- Comments&Form's here -->
+        <div class="ui segment container" style="width:700px;">
+            <h3 class="ui header" style="font-family:'Oswald', sans-serif;">评论</h3>
+            <div class="ui comments">
+                
+                {% if best_comment %}
+                    <div class="ui mini red left ribbon label">
+                        <i class="icon fire"></i>
+                        Best
+                    </div>
+                    <div class="best comment">
+                        <div class="avatar">
+                            <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                        </div>
+                        <div class="content">
+                            <a href="#" class="author">{{ best_comment.name }}</a>
+                            <div class="metadata">
+                                <div class="date">两天前</div>
+                            </div>
+                            <p class="text" style="font-family: 'Raleway', sans-serif;">
+                                {{ best_comment.comment }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="ui divider"></div>
+                {% endif %}
+               
+                {% for comment in article.under_comment.all %}
+                    <div class="comment">
+                        <div class="avatar">
+                            <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                        </div>
+                        <div class="content">
+                            <a href="#" class="author">{{ comment.name }}</a>
+                            <div class="metadata">
+                                <div class="date">两天前</div>
+                            </div>
+                            <p class="text" style="font-family: 'Raleway', sans-serif;">
+                                {{ comment.comment }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div class="ui divider"></div>
+                <form class="ui error tiny form"  method="post">
+                    {% if form.errors %}
+                        <div class="ui error message">
+                            {{ form.errors }}
+                        </div>
+    
+                        {% for field in form %}
+                            <div class="{{ field.errors|yesno:'error, '}} field">
+                                {{ field.label }}
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+    
+                    {% else %}
+                        {% for field in form %}
+                            <div class="field">
+                                {{ field.label }}
+                                {{ field }}
+                            </div>
+                        {% endfor %}
+    
+                    {% endif %}
+                    <!-- 用于自我验证个人的信息 -->
+                    {% csrf_token %}
+
+                    <div>
+                        <button type="submit" class="ui blue button" name="input">发布</button>
+                        <a href="http://127.0.0.1:8000/index/">
+                            <button type="button" class="ui right floated brown button" >返回</button>
+                        </a>
+                    </div>
+                </form>
+        </div>
+
+    </body>
+</html>

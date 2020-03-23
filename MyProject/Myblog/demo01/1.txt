@@ -1,0 +1,617 @@
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        2019/10/3     10:51                demo
+d-----        2019/10/3     10:46                demo01
+              2019/10/3     10:51         131072 db.sqlite3
+-a----        2019/10/3     10:44            647 manage.py
+
+
+PS F:\VScode\Django\demo01> python manage.py mkemigration
+Unknown command: 'mkemigration'. Did you mean makemigrations?
+Type 'manage.py help' for usage.
+PS F:\VScode\Django\demo01> python manage.py makemigrations
+Migrations for 'demo':
+  demo\migrations\0001_initial.py
+    - Create model People
+PS F:\VScode\Django\demo01> python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, demo, sessions
+Running migrations:
+  Applying demo.0001_initial... OK
+PS F:\VScode\Django\demo01>
+
+
+
+
+
+
+
+Windows PowerShell
+版权所有 (C) 2015 Microsoft Corporation。保留所有权利。
+
+PS F:\VScode\Django> & G:/Python/python.exe -m pip install -U pylint --user
+Collecting pylint
+  Downloading https://files.pythonhosted.org/packages/ef/ed/1cb8e7b85a31807aa0bff8b3e60935370bed7e141df8b530aac6352bddff/pylint-2.4.2-py3-none-any.whl (302kB)
+     |████████████████████████████████| 307kB 24kB/s
+Collecting astroid<2.4,>=2.3.0 (from pylint)
+  Downloading https://files.pythonhosted.org/packages/13/e1/74a63c85c501c29c52da5be604c025e368f4dd77daf1fa13c878a33e5a36/astroid-2.3.1-py3-none-any.whl (205kB)
+     |████████████████████████████████| 215kB 15kB/s
+Collecting mccabe<0.7,>=0.6 (from pylint)
+  Using cached https://files.pythonhosted.org/packages/87/89/479dc97e18549e21354893e4ee4ef36db1d237534982482c3681ee6e7b57/mccabe-0.6.1-py2.py3-none-any.whl
+Collecting isort<5,>=4.2.5 (from pylint)
+  Using cached https://files.pythonhosted.org/packages/e5/b0/c121fd1fa3419ea9bfd55c7f9c4fedfec5143208d8c7ad3ce3db6c623c21/isort-4.3.21-py2.py3-none-any.whl
+Collecting colorama; sys_platform == "win32" (from pylint)
+  Using cached https://files.pythonhosted.org/packages/4f/a6/728666f39bfff1719fc94c481890b2106837da9318031f71a8424b662e12/colorama-0.4.1-py2.py3-none-any.whl
+Collecting wrapt==1.11.* (from astroid<2.4,>=2.3.0->pylint)
+  Downloading https://files.pythonhosted.org/packages/23/84/323c2415280bc4fc880ac5050dddfb3c8062c2552b34c2e512eb4aa68f79/wrapt-1.11.2.tar.gz
+Collecting six==1.12 (from astroid<2.4,>=2.3.0->pylint)
+  Using cached https://files.pythonhosted.org/packages/73/fb/00a976f728d0d1fecfe898238ce23f502a721c0ac0ecfedb80e0d88c64e9/six-1.12.0-py2.py3-none-any.whl
+Collecting lazy-object-proxy==1.4.* (from astroid<2.4,>=2.3.0->pylint)
+  Using cached https://files.pythonhosted.org/packages/01/b0/467ad69cd8adfe2be737cf69b69c5809c7098a7aa337adda2542b7259bc0/lazy_object_proxy-1.4.2-cp37-cp37m-win_amd64.whl
+Collecting typed-ast<1.5,>=1.4.0; implementation_name == "cpython" and python_version < "3.8" (from astroid<2.4,>=2.3.0->pylint)
+  Downloading https://files.pythonhosted.org/packages/47/a1/7a24868c15d84ed7446106d6c3d73807f58232a695452c0a29679e5a1523/typed_ast-1.4.0-cp37-cp37m-win_amd64.whl (155kB)
+     |████████████████████████████████| 163kB 6.2kB/s
+Installing collected packages: wrapt, six, lazy-object-proxy, typed-ast, astroid, mccabe, isort, colorama, pylint
+  Running setup.py install for wrapt ... done
+  WARNING: The script isort.exe is installed in 'C:\Users\fsmq\AppData\Roaming\Python\Python37\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts epylint.exe, pylint.exe, pyreverse.exe and symilar.exe are installed in 'C:\Users\fsmq\AppData\Roaming\Python\Python37\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed astroid-2.3.1 colorama-0.4.1 isort-4.3.21 lazy-object-proxy-1.4.2 mccabe-0.6.1 pylint-2.4.2 six-1.12.0 typed-ast-1.4.0 wrapt-1.11.2
+PS F:\VScode\Django> ls
+
+
+    目录: F:\VScode\Django
+
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----        2019/10/3     10:46                demo01
+
+
+PS F:\VScode\Django> cd demo01
+PS F:\VScode\Django\demo01> python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying sessions.0001_initial... OK
+PS F:\VScode\Django\demo01> python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 03, 2019 - 10:52:07
+Django version 2.2.5, using settings 'demo01.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+[03/Oct/2019 10:52:42] "GET / HTTP/1.1" 200 16348
+[03/Oct/2019 10:52:44] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[03/Oct/2019 10:52:44] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[03/Oct/2019 10:52:44] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[03/Oct/2019 10:52:44] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+Not Found: /favicon.ico
+[03/Oct/2019 10:52:44] "GET /favicon.ico HTTP/1.1" 404 1972
+F:\VScode\Django\demo01\demo\models.py changed, reloading.
+Watching for file changes with StatReloader
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "G:\Python\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "G:\Python\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "G:\Python\lib\site-packages\django\utils\autoreload.py", line 54, in wrapper
+    fn(*args, **kwargs)
+  File "G:\Python\lib\site-packages\django\core\management\commands\runserver.py", line 109, in inner_run
+    autoreload.raise_last_exception()
+  File "G:\Python\lib\site-packages\django\utils\autoreload.py", line 77, in raise_last_exception
+    raise _exception[1]
+  File "G:\Python\lib\site-packages\django\core\management\__init__.py", line 337, in execute
+    autoreload.check_errors(django.setup)()
+  File "G:\Python\lib\site-packages\django\utils\autoreload.py", line 54, in wrapper
+    fn(*args, **kwargs)
+  File "G:\Python\lib\site-packages\django\__init__.py", line 24, in setup
+    apps.populate(settings.INSTALLED_APPS)
+  File "G:\Python\lib\site-packages\django\apps\registry.py", line 114, in populate
+    app_config.import_models()
+  File "G:\Python\lib\site-packages\django\apps\config.py", line 211, in import_models
+    self.models_module = import_module(models_module_name)
+  File "G:\Python\lib\importlib\__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1006, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 983, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 967, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 677, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 724, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 860, in get_code
+  File "<frozen importlib._bootstrap_external>", line 791, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "F:\VScode\Django\demo01\demo\models.py", line 7
+
+    ^
+SyntaxError: unexpected EOF while parsing
+
+F:\VScode\Django\demo01\demo\models.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 03, 2019 - 10:56:37
+Django version 2.2.5, using settings 'demo01.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+F:\VScode\Django\demo01\demo\models.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "G:\Python\lib\threading.py", line 926, in _bootstrap_inner
+    self.run()
+  File "G:\Python\lib\threading.py", line 870, in run
+    self._target(*self._args, **self._kwargs)
+  File "G:\Python\lib\site-packages\django\utils\autoreload.py", line 54, in wrapper
+    fn(*args, **kwargs)
+  File "G:\Python\lib\site-packages\django\core\management\commands\runserver.py", line 117, in inner_run
+    self.check(display_num_errors=True)
+  File "G:\Python\lib\site-packages\django\core\management\base.py", line 436, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+demo.People.name: (fields.E120) CharFields must define a 'max_length' attribute.
+
+System check identified 1 issue (0 silenced).
+
+F:\VScode\Django\demo01\demo\models.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 03, 2019 - 10:58:53
+Django version 2.2.5, using settings 'demo01.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+F:\VScode\Django\demo01\demo\models.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+October 03, 2019 - 10:59:50
+Django version 2.2.5, using settings 'demo01.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+
+
+
+
+
+
+
+PS F:\VScode\Django\demo01> python manage.py createsuperuser
+Username (leave blank to use 'fsmq'): hhh
+Email address:
+Password:
+Password (again):
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+PS F:\VScode\Django\demo01>
+
+
+
+
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>first web</title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}"  media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+
+        <style type="text/css">
+            h1 {
+                font-family:'Oswald', sans-serif!important;
+                font-size:40px;
+            }
+
+            body {
+                font-family: 'Raleway', sans-serif;
+            }
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+            .ui.vertical.segment.masthead {
+                height: 170px;
+                background: url({% static 'img/11.gif' %});
+                background-size: cover;
+                background-position: 100% 81%;
+            }
+
+            .ui.container.segment {
+                width: 800px;
+            }
+
+            .ui.center.aligned.header.blogslogon {
+                margin-top: 40px;
+                color: #FFE4E1;
+            }
+
+            .ui.center.aligned.header.blogslogon p {
+                margin-top: 10px;
+                color: #FFE4E1;
+                font-size: 10px;
+            }
+            .ui.container.nav {
+                width: 500px;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="ui inverted vertical segment masthead">
+            <h1 class="ui center aligned header blogslogon" style="font-size:50px;font-family: 'Raleway', sans-serif!important;">
+                星梦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;幻想
+                <p class="ui sub header">
+                    everyone has a story to tell
+                </p>
+            </h1>
+        </div>
+        <div class="ui inverted vertical grey segment">
+            <div class="ui container nav">
+                <div class="ui borderless text three item menu ">
+                    <a class="item" href="http://127.0.0.1:8000/index/">
+                        首页
+                    </a>
+                    <div class="ui dropdown simple item">
+                        分类
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item" href="?tag=life">生活</a>
+                            <a class="item" href="?tag=tech">技术</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ui large icon input">
+                            <input type="text" placeholder="文章标题">
+                                <i class="search link icon"></i>
+                        </div>
+                    </div>
+                    <a class="item">
+                        个人博客
+                    </a>
+                    <a class="item">
+                        关于我
+                    </a>
+                    <a class="item">
+                        随心说
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+
+        <div class="ui vertical segment">
+
+            {% for article in article_list %}
+                <div class="ui container vertical segment">
+                    <a href="{% url 'detail' article.id %}">
+                        <h1 class="ui header orange">
+                            {{ article.headline }}
+                        </h1>
+                    </a>
+
+                    <i class="icon grey small unhide">10,000</i>
+                    <p>
+                        {{ article.content|truncatewords:100 }}
+                        <a href="{% url 'detail' article.id %}">
+                            <i class="angle tiny double grey right icon">READMORE</i>
+                        </a>
+                    </p>
+                        <div class="content">
+                            <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                            <a href="#" class="author" style="font-size: 27px;">&nbsp;&nbsp;&nbsp;{{ article.name }}</a>
+                            <div class="metadata">
+                                <div class="date">两天前</div>
+                            </div>
+                        </div>
+                    <!-- <div class="avatar">
+                        <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                        <a href="#" class="author" style="font-size:27px;font-family: 'Raleway';line-height: 27px;text-indent: 2em;">{{ article.name }}</a>
+                    </div> -->
+                    <div class="ui mini  tag label">
+                        {{ article.tag}}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="ui inverted  vertical very padded  segment">
+            Mugglecoding®
+        </div>
+    </body>
+</html>
+
+
+
+
+
+from django.shortcuts import render, HttpResponse,redirect#导入http接收和输出的模块
+from demo.models import People, Aritcle, Comment   #导入定义数据库模块
+from django.template import Context, Template#导入模板用于渲染，添加到网页中
+from demo.form import CommentForm
+from django.core.paginator import Paginator
+
+# Create your views here.
+def first_try(request):
+    person= People(name='Spock', job='officer')#创建一个数据库里创建的表的对象，参数为表的内容
+    html_string = '''
+        <html>
+        <head>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.css" media="screen" title="no title" charset="utf-8"/>
+        </head>
+        <body>
+            <h1 class="ui center aligned icon header">
+                <i class="hand spock icon"></i>
+                Hello, {{ person.name }}
+            </h1>
+        </body>
+        </html> 
+    '''#创建要渲染的字符串，用于写入html代码，{{xxx}}是参数
+    t = Template(html_string)#将字符串转变为模板
+    c = Context({'person': person})#将数据库的数据载入模板
+    web_page= t.render(c)#将数据渲染入模板，并且保存在web_page中
+    return HttpResponse(web_page)#输出网页对象
+
+
+# Create your views here.
+def index(request):
+    # print(request)
+    # print(dir(request))
+    # print(type(request))
+    queryset = request.GET.get('tag')
+    # print(queruset)
+    if queryset:
+        article_list = Aritcle.objects.filter(tag = queryset)#查找出所有tag为所要的参数的文章
+    else:
+        article_list = Aritcle.objects.all()#变量article_list储存Article所有的文章
+    context = {}#新建字典
+    context['article_list'] = article_list #字典context中的article_list键（html中通过检索键提取文章内容）对应article_list变量的值
+    index_page = render(request, 'first_web_2.html', context)
+    return index_page
+
+def detail(request, page_num):
+    a = Aritcle.objects.get(id = page_num)
+    if request.method == 'GET':
+        form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)#表单绑定，将post里的数据绑定到CommentForm
+        #判断表单里的数据是否校验通过
+        if form.is_valid():#校验通过的数据会存储在form.cleaned_data中
+            name = form.cleaned_data['name']#取出name
+            comment = form.cleaned_data['comment']#取出comment
+            c = Comment(name = name, comment = comment, belong_to=a)#将数据载入实例对象
+            c.save()#储存实例对象，但不添加进数据库
+            return redirect(to = 'detail', page_num=page_num)#重定向到url中的name为detial的网页
+    context = {}
+    best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+    if best_comment:
+        context['best_comment'] = best_comment[0]
+    aritcle = Aritcle.objects.get(id = page_num)
+    context['article'] = aritcle
+    # context['comment_list'] = comment_list
+    context['form'] = form
+    return render(request,'detail.html',context)
+
+# def detail(request, page_num):
+#     context = {}
+#     form = CommentForm()
+#     a = Aritcle.objects.get(id = page_num)
+#     best_comment = Comment.objects.filter(best_comment=True, belong_to=a)
+#     if best_comment:
+#         context['best_comment'] = best_comment[0]
+#     aritcle = Aritcle.objects.get(id = page_num)
+#     context['article'] = aritcle
+#     # context['comment_list'] = comment_list
+#     context['form'] = form
+#     return render(request,'detail.html',context)
+
+# def detail_comment(request, page_num):
+#     form = CommentForm(request.POST)#表单绑定，将post里的数据绑定到CommentForm
+#     if form.is_valid():#校验通过的数据会存储在form.cleaned_data中
+#         a = Aritcle.objects.get(id = page_num)
+#         name = form.cleaned_data['name']#取出name
+#         comment = form.cleaned_data['comment']#取出comment
+#         c = Comment(name = name, comment = comment, belong_to=a)#将数据载入实例对象
+#         c.save()#储存实例对象，但不添加进数据库
+#         return redirect(to = 'detail', page_num=page_num)#重定向到url中的name为detial的网页
+
+
+
+
+
+
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, 
+                                     initial-scale=1.0, 
+                                     maximum-scale=1.0, 
+                                     user-scalable=no">
+        <title>first web</title>
+        <link rel="stylesheet" href="{% static 'css/semantic.css' %}"  media="screen" title="no title" charset="utf-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Raleway" rel="stylesheet">
+
+        <style type="text/css">
+            h1 {
+                font-family:'Oswald', sans-serif!important;
+                font-size:40px;
+            }
+
+            body {
+                font-family: 'Raleway', sans-serif;
+            }
+            p {
+                font-family: 'Raleway', sans-serif;
+                font-size:18px;
+            }
+            .ui.vertical.segment.masthead {
+                height: 170px;
+                background: url({% static 'img/11.gif' %});
+                background-size: cover;
+                background-position: 100% 81%;
+            }
+            
+            .left{
+                width: auto;
+                float: left;
+                background: azure;
+            }
+
+            .ui.container.segment {
+                /* float: left; */
+                width: 97%;
+            }
+
+            .ui.center.aligned.header.blogslogon {
+                margin-top: 40px;
+                color: #FFE4E1;
+            }
+
+            .ui.center.aligned.header.blogslogon p {
+                margin-top: 10px;
+                color: #FFE4E1;
+                font-size: 10px;
+            }
+            .ui.container.nav {
+                width: 50%;
+                height: 10%;
+            }
+            .main
+            {
+                width: 77%;
+                MARGIN-RIGHT: auto; 
+                MARGIN-LEFT: auto;
+                background:url({% static 'img/21.jpg'%});
+                background-size:cover;
+                background-repeat:no-repeat;
+                background-attachment:fixed
+            }
+
+        </style>
+    </head>
+    <body>
+        
+        <div class="ui inverted vertical segment masthead">
+            <h1 class="ui center aligned header blogslogon" style="font-size:50px;font-family: 'Raleway', sans-serif!important;">
+                星梦&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;幻想
+                <p class="ui sub header">
+                    everyone has a story to tell
+                </p>
+            </h1>
+        </div>
+        
+        <div class="ui inverted vertical grey segment" style="height: 17%;">
+            <div class="ui container nav">
+                <div class="ui borderless text four item menu ">
+                    <a class="item" href="http://127.0.0.1:8000/index/"  style="color:GhostWhite;">
+                        首页
+                    </a>
+                    <div class="ui dropdown simple item"  style="color: GhostWhite;">
+                        分类
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <a class="item" href="?tag=life" style="color: GhostWhite;">生活</a>
+                            <a class="item" href="?tag=tech" style="color: GhostWhite;">技术</a>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="ui large icon input">
+                            <input type="text" placeholder="文章标题">
+                                <i class="search link icon"></i>
+                        </div>
+                    </div>
+                    <a class="item" style="color: GhostWhite;">
+                        个人博客
+                    </a>
+                    <a class="item" style="color: GhostWhite;">
+                        关于我
+                    </a>
+                    <a class="item" style="color: GhostWhite;">
+                        随心说
+                    </a>
+                    <div class="item">
+                        <img class="ui circular image" src="{% static 'img/21.jpg'%}" height="40px" width="40px">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+        <!-- //main -->
+        <div class="ui segment container vertical ">
+            <!-- LEFT -->
+            <div class="main">
+                <div class="ui vertical padded segment">
+                    {% for article in article_list %}
+                        <div class="ui container vertical segment">
+                            <a href="{% url 'detail' article.id %}">
+                                <h1 class="ui header orange">
+                                    {{ article.headline }}
+                                </h1>
+                            </a>
+
+                            <i class="icon grey small unhide">10,000</i>
+                            <p style="color:Azure;">
+                                {{ article.content|truncatewords:100 }}
+                                <a href="{% url 'detail' article.id %}">
+                                    <i class="angle tiny double grey right icon">READMORE</i>
+                                </a>
+                            </p>
+                                <div class="content">
+                                    <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                    <a href="#" class="author PeachPuff" style="font-size: 27px; color: #FFE4E1;">&nbsp;&nbsp;&nbsp;{{ article.name }}</a>
+                                    <div class="metadata">
+                                        <div class="date">两天前</div>
+                                    </div>
+                                </div>
+                            <!-- <div class="avatar">
+                                <img src="http://semantic-ui.com/images/avatar/small/matt.jpg" alt="" />
+                                <a href="#" class="author" style="font-size:27px;font-family: 'Raleway';line-height: 27px;text-indent: 2em;">{{ article.name }}</a>
+                            </div> -->
+                            <div class="ui mini  tag label">
+                                {{ article.tag}}
+                            </div>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="ui inverted  vertical very padded  segment">
+            Mugglecoding®
+        </div>
+
+    </body>
+</html>
