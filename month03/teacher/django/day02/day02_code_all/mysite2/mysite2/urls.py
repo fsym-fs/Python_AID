@@ -1,4 +1,4 @@
-"""demo01 URL Configuration
+"""mysite2 URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.11/topics/http/urls/
@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from . import views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^page',views.page01_view),
-    url(r'^test_post$',views.page02_view),
-    url(r'^test_html$',views.test_html),
-    url(r'^mycal$',views.num_test01_view)
+    #http://127.0.0.1:8000/test_html
+    url(r'^test_html$', views.test_html),
+    #http://127.0.0.1:8000/mycal
+    url(r'^mycal$', views.mycal_view)
 ]

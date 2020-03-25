@@ -36,14 +36,28 @@
         }
 
         .login_body {
-            background-color: #b5ed94;
+            /*background-color: #b5ed94;*/
         }
     </style>
+    <script>
+        $(function () {
+            //加载页面内容到指定元素
+            // $('#show').load('/load_server')
+            //加载远程页面某一个元素
+            // $('#show').load('/load_server #btn2')
+            //传输数据(字符串/对象)
+            //字符串为get方式传输
+            // $('#show').load('/load_server', 'uname=Tom&age=18')
+            //对象为post方式传输
+            $('#login_nav').load('http://127.0.0.1:5000/public #public_header');
+            $('#login_footer').load('http://127.0.0.1:5000/public #public_footer')
+        })
+    </script>
 </head>
 <body>
 
 <!--菜单-->
-<nav>
+<nav id="login_nav">
 
 </nav>
 <!--主体头部-->
@@ -80,9 +94,10 @@
     </div>
 </div>
 <!--底部-->
-<footer>
+<footer id="login_footer">
 
 </footer>
+
 
 </body>
 </html>
