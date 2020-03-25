@@ -10,3 +10,12 @@ def public():
 @webapp.route('/login', methods=['GET', 'POST'])
 def login():
     return login_view()
+
+# 查询
+@webapp.route('/user')
+def users():
+    return users_view()
+
+@webapp.route('/user/<int:id>')
+def user(id):
+    return user_view(id)
