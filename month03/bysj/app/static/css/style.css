@@ -402,7 +402,7 @@ label.cat-in{
 }
 /*----*/
 .in-left{	
-	background:url(../images/goods.jpg) 0px 0px;
+	background:url(../img/goods.jpg) 0px 0px;
 	width: 100%;
 	min-height: 425px;
 	background-size:cover;
@@ -410,7 +410,7 @@ label.cat-in{
 	position:relative;
 }
 .cool{
-	background:url(../images/get.png) 0px 0px no-repeat;
+	background:url(../img/get.png) 0px 0px no-repeat;
 	width: 175px;
 	height: 183px;
 	text-align: center;
@@ -569,11 +569,11 @@ span.twitter-ic{
 }
 .nbs-flexisel-nav-left {
 	left: 0px;
-	background: url(../images/img-sprite.png) no-repeat -44px 0px;
+	background: url(../img/img-sprite.png) no-repeat -44px 0px;
 }
 .nbs-flexisel-nav-right {
 	right: 0px;
-	background: url(../images/img-sprite.png) no-repeat -77px 0px;
+	background: url(../img/img-sprite.png) no-repeat -77px 0px;
 }
 .hide-in{
 	padding:1px 0 1em;

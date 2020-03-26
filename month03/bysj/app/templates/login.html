@@ -49,8 +49,8 @@
             //字符串为get方式传输
             // $('#show').load('/load_server', 'uname=Tom&age=18')
             //对象为post方式传输
-            $('#login_nav').load('http://127.0.0.1:5000/public #public_header');
-            $('#login_footer').load('http://127.0.0.1:5000/public #public_footer')
+            $('#login_nav').load('/public #public_header');
+            $('#login_footer').load('/public #public_footer')
         })
     </script>
 </head>
@@ -60,9 +60,7 @@
 <nav id="login_nav">
 
 </nav>
-<!--主体头部-->
-<div class="header">
-</div>
+
 <!--主体内容-->
 <div class="login_body">
     <div class="container content">
@@ -83,7 +81,12 @@
                     <label for="pwd2">确认密码</label>
                     <input type="password" class="form-control" id="pwd2" maxlength="11">
                 </div>
-                <br><br>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"> 记住密码
+                    </label>
+                </div>
+                <br>
                 <div class="form-group">
                     <button type="submit" class="btn btn-success center-block pull-left login_btn">登录</button>
                     <button type="submit" class="btn btn-warning center-block pull-right register_btn">注册</button>
@@ -93,6 +96,7 @@
         </div>
     </div>
 </div>
+
 <!--底部-->
 <footer id="login_footer">
 

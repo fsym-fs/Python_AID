@@ -1,13 +1,32 @@
 from flask import request, render_template
 from app.my_models import User
+from app.my_models import Person
 
 
 def public_view():
     return render_template('public_html.html')
 
 
+def index_view():
+    return render_template('index.html')
+
+
 def login_view():
     return render_template('login.html')
+
+
+def register_view():
+    if request.method == 'GET':
+        return render_template('register.html')
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
+
+
+def person_view():
+    persons = Person.query.all()
+    return "<br>".join(["{0}: {1}".format(person.uname, person.pwd) for person in persons])
 
 
 def users_view():
