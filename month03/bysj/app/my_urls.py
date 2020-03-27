@@ -6,6 +6,9 @@ from app.my_views import *
 def public():
     return public_view()
 
+@webapp.route('/test')
+def test():
+    return test_view()
 
 @webapp.route('/index', methods=['GET', 'POST'])
 @webapp.route('/', methods=['GET', 'POST'])

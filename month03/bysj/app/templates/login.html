@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales of agricultural products for poverty alleviation_login</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
     <style>
         .content {
             /*background-color: antiquewhite;*/
@@ -39,30 +32,11 @@
             /*background-color: #b5ed94;*/
         }
     </style>
-    <script>
-        $(function () {
-            //加载页面内容到指定元素
-            // $('#show').load('/load_server')
-            //加载远程页面某一个元素
-            // $('#show').load('/load_server #btn2')
-            //传输数据(字符串/对象)
-            //字符串为get方式传输
-            // $('#show').load('/load_server', 'uname=Tom&age=18')
-            //对象为post方式传输
-            $('#login_nav').load('/public #public_header');
-            $('#login_footer').load('/public #public_footer')
-        })
-    </script>
-</head>
-<body>
+{% endblock %}
 
-<!--菜单-->
-<nav id="login_nav">
-
-</nav>
-
-<!--主体内容-->
-<div class="login_body">
+{% block mycontent %}
+    <!--主体内容-->
+    <div class="login_body">
     <div class="container content">
         <div class="row">
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" id="pic">
@@ -97,11 +71,6 @@
     </div>
 </div>
 
-<!--底部-->
-<footer id="login_footer">
-
-</footer>
+{% endblock %}
 
 
-</body>
-</html>

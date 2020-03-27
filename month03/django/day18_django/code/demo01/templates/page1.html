@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page1</title>
+</head>
+<body>
+    <h2>
+        page1
+    </h2>
+    <a href="/page2">into page2</a>
+    <a href="{% url 'page2' %}">into page2[反向解析]</a>
+    <a href="{% url 'pn' '50' %}">into pagepn[反向解析]</a>
+    {# 只支持带命名分组   #}
+    <a href="{% url 'pn' n='120' %}">into pagepn[反向解析]</a>
+</body>
+</html>
