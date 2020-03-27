@@ -90,7 +90,7 @@ def test_music(request):
 
 
 def test_sport(request):
-    return render(request, 'sport.html')
+    return render(request, 'templates.html')
 
 
 def page1_view(request):

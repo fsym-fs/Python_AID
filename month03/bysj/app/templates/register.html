@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sales of agricultural products for poverty alleviation_login</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <style>
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
+<style>
         .content {
             /*background-color: #00FFFF;*/
             width: 50%;
@@ -36,17 +29,12 @@
             margin-right: 20%;
         }
     </style>
-    <script src="../static/js/public.js"></script>
-</head>
-<body>
+{% endblock %}
 
-<!--菜单-->
-<nav id="login_nav">
+{% block mycontent %}
 
-</nav>
-
-<!--主体内容-->
-<div class="login_body">
+    <!--主体内容-->
+    <div class="login_body">
     <div class="container">
         <div class="content center-block">
             <h2 class="text-center">
@@ -107,11 +95,6 @@
     </div>
 </div>
 
-<!--底部-->
-<footer id="login_footer">
-
-</footer>
+{% endblock %}
 
 
-</body>
-</html>
