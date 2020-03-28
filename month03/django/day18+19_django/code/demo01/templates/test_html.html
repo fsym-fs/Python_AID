@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>first</title>
+</head>
+<body>
+    <h1>First</h1>
+    <h2>姓名: {{ username }} 年龄: {{ age | add:"10" }}</h2>
+    <h3>{{ lis }}</h3>
+    <h3>{{ lis.0 }}</h3>
+    <h3>{{ d }}</h3>
+    <h3>{ d.a }}</h3>
+
+    {% if age >= 18 %}
+        <h3>已成年</h3>
+    {% else %}
+        <h3>未成年</h3>
+    {% endif %}
+
+    <pre></pre>
+    {% for i in lis %}
+        <p> {{ forloop.counter }} val:{{i}} </p>
+    {% endfor %}
+</body>
+</html>

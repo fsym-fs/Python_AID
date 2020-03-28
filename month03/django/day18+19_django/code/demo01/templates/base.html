@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block mytitle %}
+        <title>首页</title>
+    {% endblock %}
+</head>
+<body>
+    <a href="/test_music">音乐频道</a>
+    <a href="/test_sport">体育频道</a>
+    <br>
+    {% block info %}
+        这是主页
+    {% endblock %}
+    <br>
+    <h3>这里是尾部</h3>
+</body>
+</html>

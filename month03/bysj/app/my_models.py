@@ -13,6 +13,7 @@ class User(db.Model):
     # nullable 是否可以为空
     pwd = db.Column(db.String(11), nullable=False)
     email = db.Column(db.String(120), unique=True)
+    is_active = db.Column(db.Boolean, default=True)
 
     def __init__(self, name, pwd, email):
         self.uuname = name
@@ -27,11 +28,12 @@ class User(db.Model):
 # 创建客户表
 class Person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    uname = db.Column(db.String(20), unique=True)
+    uname = db.Column(db.String(20), unique=True, nullable=False)
     # nullable 是否可以为空
     pwd = db.Column(db.String(11), nullable=False)
-    email = db.Column(db.String(50), unique=False)
-    phone = db.Column(db.String(11), unique=False)
+    email = db.Column(db.String(50), unique=False, default='')
+    phone = db.Column(db.String(11), unique=True)
+    is_active = db.Column(db.Boolean,default=True)
 
     def __init__(self, uname, pwd):
         self.uname = uname

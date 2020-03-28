@@ -24,11 +24,11 @@
         }
 
         .nav_left {
-            margin-left: 40%;
+            margin-left: 30%;
         }
 
         .nav_right {
-            margin-right: 40%;
+            margin-right: 30%;
         }
 
         .login_body {
@@ -145,68 +145,82 @@
             <!-- 面板区 -->
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="personal">
-                  <div class="person_content center-block">
-            <h2 class="text-center">
-                个人信息
-                <small>注册</small>
-            </h2>
-            <br>
-            <div class="form-group">
-                <label for="uname">用户名</label>
-                <input type="email" class="form-control" id="uname" placeholder="请输入用户名">
-            </div>
-            <div class="form-group">
-                <label for="pwd">密码</label>
-                <input type="password" class="form-control" id="pwd" maxlength="11">
-            </div>
-            <div class="form-group">
-                <label for="pwd2">确认密码</label>
-                <input type="password" class="form-control" id="pwd2" maxlength="11">
-            </div>
-            <!--   邮箱     -->
-            <div class="form-group">
-                <label for="email">邮箱</label>
-                <input type="email" class="form-control" id="email">
-            </div>
+                <div class="person_content center-block">
+                    <h2 class="text-center">
+                        个人信息
+                        <small>随风潜相思@小店</small>
+                    </h2>
+                    <br>
+                    <div class="form-group center-block">
+                    <img src="../static/img/四叶草.jpg" class="img-circle header_pic center-block">
+                    <!--
+                    <input type="file" id="header_image" name="test"
+                           accept="image/gif, image/jpeg, image/png, image/jpg" style="margin-left: 35%;">
+                   -->
+                    </div>
+                    <div class="form-group">
+                        <label for="uname">用户名</label>
+                        <input type="email" class="form-control" id="uname" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">密码</label>
+                        <input type="password" class="form-control" id="pwd" maxlength="11">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd2">确认密码</label>
+                        <input type="password" class="form-control" id="pwd2" maxlength="11">
+                    </div>
+                    <!--   邮箱     -->
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
 
-            <div class="form-group">
-                <label for="phone">手机号</label>
-                <input type="tel" class="form-control" id="phone" maxlength="11">
-            </div>
+                    <div class="form-group">
+                        <label for="phone">手机号</label>
+                        <input type="tel" class="form-control" id="phone" maxlength="11">
+                    </div>
 
-            <div class="form-group">
-                <label for="verify">验证码</label>
-                <div>
-                    <input type="text" class="verify_left form-control pull-left" id="verify01" style="width: 40%" disabled>
-                    <input type="text" class="verify_right form-control pull-right" id="verify" style="width: 30%">
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success center-block pull-left login_btn">提交</button>
+                        <button type="reset" class="btn btn-warning center-block pull-right register_btn">置空</button>
+                        <div class="clearfix"></div>
+                        <!--   验证码   -->
+                        <script>
+                            $('#pwd2').change(function () {
+                                var x = Math.floor(Math.random() * 10);
+                                var y = Math.floor(Math.random() * 10);
+                                var result = x + y;
+                                var str = x+'+'+y+'=';
+                                $('#verify01').val(str);
+                                console.log(str);
+                            })
+                        </script>
+                    </div>
                 </div>
-            </div>
-
-            <br>
-            <br>
-            <div class="form-group">
-                <button type="submit" class="btn btn-success center-block pull-left login_btn">提交</button>
-                <button type="reset" class="btn btn-warning center-block pull-right register_btn">置空</button>
-                <div class="clearfix"></div>
-                <!--   验证码   -->
-                <script>
-                    $('#pwd2').change(function () {
-                        var x = Math.floor(Math.random() * 10);
-                        var y = Math.floor(Math.random() * 10);
-                        var result = x + y;
-                        var str = x+'+'+y+'=';
-                        $('#verify01').val(str);
-                        console.log(str);
-                    })
-                </script>
-            </div>
-        </div>
               </div>
               <div role="tabpanel" class="tab-pane" id="modify">
-                  2
+                <div class="person_content center-block">
+                    <table border="1">
+                        <tr>
+                            <th>Header 1</th>
+                            <th>Header 2</th>
+                        </tr>
+                        <tr>
+                            <td>row 1, cell 1</td>
+                            <td>row 1, cell 2</td>
+                        </tr>
+                        <tr>
+                            <td>row 2, cell 1</td>
+                            <td>row 2, cell 2</td>
+                        </tr>
+                    </table>
+
+                </div>
               </div>
             </div>
-        </div>
     </div>
 </div>
 
