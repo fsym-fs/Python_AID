@@ -36,6 +36,16 @@ def register():
     return register_view()
 
 
+@webapp.route('/personal', methods=['GET', 'POST'])
+def personal():
+    url_for(sys._getframe().f_code.co_name)
+    return personal_view()
+
+@webapp.route('/about', methods=['GET', 'POST'])
+def about():
+    url_for(sys._getframe().f_code.co_name)
+    return about_view()
+
 # 查询
 @webapp.route('/user')
 def users():

@@ -2,8 +2,10 @@ from flask import request, render_template
 from app.my_models import User
 from app.my_models import Person
 
+
 def test_view():
     return render_template('test.html')
+
 
 def public_view():
     return render_template('public_html.html')
@@ -25,6 +27,22 @@ def register_view():
     else:
         pass
 
+
+def personal_view():
+    if request.method == 'GET':
+        return render_template('personal.html')
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
+
+def about_view():
+    if request.method == 'GET':
+        return render_template('about.html')
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
 
 def person_view():
     persons = Person.query.all()

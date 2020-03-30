@@ -12,9 +12,19 @@ class Book(models.Model):
     def __str__(self):
         return '%s_%s_%s_%s' % (self.title, self.price, self.pub, self.market_price)
 
+    class Meta:
+        db_table = 'book'
+        verbose_name = '图书'
+        verbose_name_plural = verbose_name
+
 
 class Author(models.Model):
     name = models.CharField('姓名', default='', max_length=11)
     age = models.IntegerField("年龄", default=1)
     email = models.EmailField("邮箱", null=True)
     is_active = models.BooleanField('是否活跃', default=True)
+
+    class Meta:
+        db_table = 'myauthor'
+        verbose_name = '作者'
+        verbose_name_plural = verbose_name

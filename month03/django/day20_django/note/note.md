@@ -318,6 +318,6 @@
                 cur.execute('delete from bookstore_book where id=10;')        
 
 ## sql注入问题  
-
+**int型通过此方法可以解决注入，其他类型则无法查出任何内容**
 1.select * from bookstore_book where id=%s'%('1 or 1=1')
 解决:select * from bookstore_book where id=%s',['1 or 1=1']           
