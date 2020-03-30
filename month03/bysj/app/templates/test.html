@@ -160,15 +160,15 @@
                     </div>
                     <div class="form-group">
                         <label for="uname">用户名</label>
-                        <input type="email" class="form-control" id="uname" placeholder="请输入用户名">
+                        <input type="text" class="form-control" id="uname" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="realname">真实姓名</label>
+                        <input type="text" class="form-control" id="realname" placeholder="请输入真实姓名">
                     </div>
                     <div class="form-group">
                         <label for="pwd">密码</label>
                         <input type="password" class="form-control" id="pwd" maxlength="11">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd2">确认密码</label>
-                        <input type="password" class="form-control" id="pwd2" maxlength="11">
                     </div>
                     <!--   邮箱     -->
                     <div class="form-group">
@@ -187,17 +187,6 @@
                         <button type="submit" class="btn btn-success center-block pull-left login_btn">提交</button>
                         <button type="reset" class="btn btn-warning center-block pull-right register_btn">置空</button>
                         <div class="clearfix"></div>
-                        <!--   验证码   -->
-                        <script>
-                            $('#pwd2').change(function () {
-                                var x = Math.floor(Math.random() * 10);
-                                var y = Math.floor(Math.random() * 10);
-                                var result = x + y;
-                                var str = x+'+'+y+'=';
-                                $('#verify01').val(str);
-                                console.log(str);
-                            })
-                        </script>
                     </div>
                 </div>
               </div>
