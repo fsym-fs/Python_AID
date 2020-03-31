@@ -1,219 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sales of agricultural products for poverty alleviation_public_html</title>
-    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="../static/js/jquery.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/public.js"></script>
-    <style>
-        .content {
-            {#background-color: #00FFFF;#}
-            width: 66%;
-            box-sizing: border-box;
-            padding: 5%;
-        }
+{% extends 'public_html.html' %}
 
-        .person_content{
-            width: 50%;
-            box-sizing: border-box;
-            padding: 5%;
-        }
+{% block mystyle %}
+{% endblock %}
 
-        .nav_left {
-            margin-left: 30%;
-        }
+{% block mycontent %}
 
-        .nav_right {
-            margin-right: 30%;
-        }
-
-        .login_body {
-            /*background-color: #b5ed94;*/
-        }
-
-        .verify_left {
-            /*margin-left: 10%;*/
-        }
-
-        .verify_right {
-            margin-right: 20%;
-        }
-    </style>
-</head>
-<body>
-
-<nav id="public_header" class="header">
-    <div class="header-top">
-        <div class="container" style="margin-bottom: 0;">
-            <nav class="navbar-inverse navbar-fixed-top " style="background-color:#b5ed94;position: relative">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="/index">首页</a>
-                    </div>
-                    <div id="navbar" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav header-grid">
-                            <li><a href="#">购物车</a></li>
-                            <li><a href="#">关于我</a></li>
-                        </ul>
-                        <div class="header-grid header_log">
-                            <img src="../static/img/四叶草.jpg" class="img-circle" alt="Cinque Terre">
-                        </div>
-                        <div class="header-grid-right">
-                            <a href="/login" class="sign-in">登录</a>
-                            <form>
-                                <input type="text" value="" placeholder="用户名">
-                                <input type="text" value="" placeholder="密码">
-                                <input type="submit" value="Go">
-                            </form>
-                            <label>|</label>
-                            <a href="/register" class="sign-up">注册</a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </nav>
-            <!--            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>-->
-            <!--            <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
-            <!--            <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-            <!--            <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
-        </div>
-    </div>
-    <div class="container">
-        <div class="header-bottom">
-            <div class="logo">
-                <a href="index.html"><img src="../static/img/fp_logo1.png" alt=" "></a>
-            </div>
-            <div class="title">
-                <a href="index.html"><img src="../static/img/title01.jpg" alt=" "></a>
-            </div>
-            <div class="ad-right">
-                <img class="img-responsive" src="../static/img/ncp_logo1.png" alt=" ">
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="header-bottom-bottom">
-            <div class="top-nav">
-                <span class="menu"> </span>
-                <ul>
-                    <li class="active"><a href="/index">首页</a></li>
-                    <li><a href="men.html">最新商品</a></li>
-                    <li><a href="women.html">所有商品</a></li>
-                    <li><a href="collection.html">分类</a></li>
-                    <li><a href="aboutme.html">关于我们</a></li>
-                </ul>
-                <script>
-                    $("span.menu").click(function () {
-                        $(".top-nav ul").slideToggle(500, function () {
-                        });
-                    });
-                </script>
-
-                <div class="clearfix"></div>
-            </div>
-            <div class="search">
-                <form>
-                    <input type="text" value="Search" onfocus="this.value = '';"
-                           onblur="if (this.value == '') {this.value = '';}">
-                    <input type="submit" value="">
-                </form>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</nav>
-
-<div class="content">
+    <!--主体内容-->
+   <div class="content">
 		<div class="container">
-			<div class="article-top">
-				<h3>关于我们</h3>
-				<div class="article-bottom">
-					<div class="col-md-4 article-para">
-						<a href="index.html">
-							<img src="../static/img/aboutme_logo.png" alt="image" class="img-responsive zoom-img">
-						</a>
-					</div>
-					<div class="col-md-8 article-head">
-						<h4 style="text-align: center;">
-							<a href="index.html">
-								扶贫农产品销售网站
-							</a>
-						</h4>
-						<p></p>
-						<p style="font-size: large;">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在互联网信息时代的不断发展下，越来越多的政策，措施网络化。
-							精准扶贫作为我国的一项重大战略决策，扶贫农产品的销售的系统化和规范化也成为当务之急。
-						</p>
-						<p style="font-size: large;">
-							精准扶贫作为我国的一项重大战略决策，扶贫农产品的销售的系统化和规范化也成为当务之急。
-						</p>
-						<p style="font-size: large;">
-							在互联网+的推动下,线上交易成为了人们便利可靠的一种主要途径.
-							互联网+农产品与互联网+扶贫农产品销售的发展迫在眉睫.
-						</p>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="article-bottom">
-
-					<div class="col-md-8 article-head">
-						<h4><a href="#">实现途径</a></h4>
-						<p></p>
-						<p style="font-size: large;">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在互联网+与大数据飞速发展下，人们离不开互联网，然而作为服务行业用户需要的并不是仅仅是便利快捷的功能，
-							同时也需要满足用户的审美需求,通过科技感、清晰明了的网站界面来展示。
-							本扶贫农产品的销售网站采用Python/java开发语言设计与Django/ssm框架来搭建网站，
-							通过相应的接口来连接数据库，达到数据实时更新的效果，
-							而界面部分则遵循WebUI的设计规范，利用PS及UI来设计整体网站的样式
-						</p>
-						<p style="font-size: large;">
-							根据对农产品销售网站操作的需求，设计了的相应架构，
-							网站的架构采用Django/ssm框架来进行设计，
-							将系统按照要求分为不同的功能模块，
-							主要包括：前台和后台功能模块，
-							各模块之间相互独立又相互协作,
-							充分体现了面向对象编程语言的六大原则，
-							增强了系统的维护性和扩展性。
-						</p>
-					</div>
-					<div class="col-md-4 article-para">
-						<a href="index.html">
-							<img src="../static/img/aboutme_logo01.jpg" alt="image" class="img-responsive zoom-img">
-						</a>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-
-			</div>
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-1 col-xs-1"  style="background-color: #00FFFF;height: 60%">
+                    <img src="../static/img/四叶草.jpg" width="100%">
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-1 col-xs-1" style="background-color:rosybrown">
+                    2
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-1 col-xs-1" style="background-color: #00FFFF">
+                    3
+                </div>
+            </div>
 		</div>
 	</div>
 
-<footer id="public_footer" class="footer">
-    <div class="container">
-        <div class="class-footer">
-            <ul>
-                <li><a href="index.html">主页 </a><label>|</label></li>
-                <li><a href="men.html">最新商品</a><label>|</label></li>
-                <li><a href="women.html">所有商品</a><label>|</label></li>
-                <li><a href="collection.html">分类</a><label>|</label></li>
-                <li><a href="collection.html">品牌</a><label>|</label></li>
-                <li><a href="aboutme.html">关于我们</a></li>
-            </ul>
-            <p class="footer-grid">
-                &copy; 2020.随风浅相思 &nbsp;&nbsp; 1085414029@qq.com
-            </p>
-        </div>
-    </div>
-</footer>
+{% endblock %}
 
-</body>
-</html>
+
+
+

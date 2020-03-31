@@ -3,8 +3,6 @@ from app.my_models import User
 from app.my_models import Person
 
 
-def test_view():
-    return render_template('test.html')
 
 
 def public_view():
@@ -43,6 +41,17 @@ def about_view():
         pass
     else:
         pass
+
+def test_view():
+    if request.method == 'GET':
+        return render_template('test.html')
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
+
+
+
 
 def person_view():
     persons = Person.query.all()

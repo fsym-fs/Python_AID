@@ -500,6 +500,10 @@
             book22 = author2.book_set.create(title="C++")  # 创建一本新书"C++"
         
             return HttpResponse("初始化成功")
+            
+            # 通过书创建并绑定作者
+            
+            b2.authors.create(name='lvze')
         
         ​
         

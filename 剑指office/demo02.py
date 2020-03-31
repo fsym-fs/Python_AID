@@ -7,15 +7,19 @@
     例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 """
 # -*- coding:utf-8 -*-
+
+
 class Solution:
     # s 源字符串
     def replaceSpace(self, s):
         # write code here
-        return s.replace(' ',"%20")
+        return s.replace(' ', "%20")
+
+
 while True:
     try:
         f = Solution()
         array = input()
         print(f.replaceSpace(array))
-    except :
+    except:
         break

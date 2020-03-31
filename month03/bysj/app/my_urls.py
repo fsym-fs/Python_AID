@@ -11,11 +11,6 @@ def public():
     return public_view()
 
 
-@webapp.route('/test')
-def test():
-    url_for(sys._getframe().f_code.co_name)
-    return test_view()
-
 
 @webapp.route('/index', methods=['GET', 'POST'])
 @webapp.route('/', methods=['GET', 'POST'])
@@ -41,10 +36,18 @@ def personal():
     url_for(sys._getframe().f_code.co_name)
     return personal_view()
 
+
 @webapp.route('/about', methods=['GET', 'POST'])
 def about():
     url_for(sys._getframe().f_code.co_name)
     return about_view()
+
+
+@webapp.route('/test', methods=['GET', 'POST'])
+def test():
+    url_for(sys._getframe().f_code.co_name)
+    return test_view()
+
 
 # 查询
 @webapp.route('/user')
