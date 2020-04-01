@@ -18,10 +18,16 @@
 ```python
 from django.shortcuts import render
 
+@cache_page(60)
 def index(request):
     # 时间复杂度极高的渲染
     book_list = Book.objects.all()  #-> 此处假设耗时2s
+    
+    
     return render(request, 'index.html', locals())
+
+
+
 ```
 
 优化思想
@@ -73,7 +79,7 @@ CACHES = {
 创建缓存表
 
 ```python
-python manage.py createcachetable
+python3 manage.py createcachetable
 ```
 
 
@@ -112,7 +118,7 @@ CACHES = {
 在视图View中使用cache
 
 ```python
- from django.views.decorators.cache import cache_page
+from django.views.decorators.cache import cache_page
 
 @cache_page(30)  -> 单位s
 def my_view(request):
@@ -157,7 +163,6 @@ urlpatterns = [
   #key: 字符串类型
   #value: Python对象
   #timeout：缓存存储时间  默认值为settings.py CACHES对应配置的TIMEOUT
-  ##version:版本号，用于区分相同的key
   #返回值：True
   cache.set('my_key', 'myvalue', 30)
   
@@ -194,20 +199,22 @@ urlpatterns = [
 
   from django.shortcuts import render
   
+  
   def index(request):
       # 时间复杂度极高的渲染
       cache_key = 'all_book'
-      cache_res  = cache.get(cache_key)
+      cache_res = cache.get(cache_key)
       if not cache_res:
-          book_list = Book.objects.all()
-          cache.set(cache_key,book_list)
+          book_list = Book.objects.all()  #-> 此处假设耗时2s
+          cache.set(cache_key, book_list)
       else:
           book_list = cache_res
+   
       return render(request, 'index.html', locals())
   
+  
+  
   ```
-  
-  
   
   
 
@@ -324,32 +331,17 @@ MIDDLEWARE = [
        ]
 ```
 - 中间件的执行过程
-    
     - ![](images/middleware.jpeg)
-    
-- 多个中间件的执行过程(洋葱):m1-->m2--view--->m2--->m1
+
 
 - 练习
-
     - 用中间件实现强制某个IP地址只能向/test 发送 5 次GET请求
     - 提示:
         - request.META['REMOTE_ADDR'] 可以得到远程客户端的IP地址
         - request.path_info 可以得到客户端访问的GET请求路由信息
     - 答案:
         ```python
-        class VisitLimit(MiddlewareMixin):
-            visit_times = {}
         
-            def process_request(self, request):
-                ip_address = request.META['REMOTE_ADDR']
-                path = request.path_info
-                if path != '/test_mv':
-                    return
-                times = self.visit_times.get(ip_address, 0)
-                self.visit_times[ip_address] = times + 1
-                if times < 5:
-                    return
-                return HttpResponse('您已经访问过%s次,您已经被禁止访问!' % (times))
         ```
 
 
@@ -374,7 +366,7 @@ MIDDLEWARE = [
         {% csrf_token %}
         ```
 
-
+ 
 
 ## 分页
 - 分页是指在web页面有大量数据需要显示，为了阅读方便在每个页页中只显示部分数据。
