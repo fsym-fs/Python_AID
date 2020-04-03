@@ -103,7 +103,7 @@ mysql> desc auth_user;
         return HttpResponse("没有此用户！")
     ```
 
-### auth扩展字段(没有使用过makemigrations和migrate时才能使用)
+### auth扩展字段
 
 ```python
 如果需要在默认auth表上扩展新的字段，如phone
@@ -163,8 +163,6 @@ mail.send_mail(
             from_email,  # 发送者[当前配置邮箱]
             recipient_list=['xxx@qq.com'],  # 接收者邮件列表
             )
-eg:
-    mail.send_mail(subject='hello,world',message='哈哈聪聪怪!',from_email='1085414029@qq.com',recipient_list=['1085414029@qq.com','634482681@qq.com']
 ```
 
 
@@ -209,15 +207,6 @@ eg:
 - 它实现了WSGI协议、http等协议。Nginx中HttpUwsgiModule的作用是与uWSGI服务器进行交换。WSGI是一种Web服务器网关接口。
 
 ### uWSGI 网关接口配置 (ubuntu 18.04 配置)
-
-```python
-uWSGI	 web服务
-		实现了http WSGI uwsgi 协议
-   
-```
-
-
-
 - 使用 `python manage.py runserver` 通常只在开发和测试环境中使用。
 
 - 当开发结束后，完善的项目代码需要在一个高效稳定的环境中运行，这时可以使用uWSGI
@@ -245,8 +234,6 @@ uWSGI	 web服务
 - 配置uWSGI
     - 添加配置文件 `项目文件夹/uwsgi.ini`
         - 如: mysite1/uwsgi.ini
-        - top 命令查看cpu
-        - sudo tail -f uwsgi.log   监听指定日志的尾部
         ```ini
         [uwsgi]
         # 套接字方式的 IP地址:端口号
@@ -264,9 +251,9 @@ uWSGI	 web服务
         # 服务的pid记录文件
         pidfile=uwsgi.pid
         # 服务的目志文件位置
-    daemonize=uwsgi.log
+        daemonize=uwsgi.log
         # 开启主进程管理模式
-        master=true
+    master=true
         ```
         
     - 修改settings.py将 DEBUG=True 改为DEBUG=False
@@ -276,20 +263,15 @@ uWSGI	 web服务
 - uWSGI的运行管理
   
     - 启动 uwsgi
-      
-    - **注意:在启动后，未关闭前不能重复启动!**
-      
         ```shell
         $ cd 项目文件夹
         $ sudo uwsgi --ini 项目文件夹/uwsgi.ini
         ```
-        
     - 停止 uwsgi
         ```shell
         $ cd 项目文件夹
         $ sudo uwsgi --stop uwsgi.pid
         ```
-        
     - 说明:
       
         - 当uwsgi 启动后,当前django项目的程序已变成后台守护进程,在关闭当前终端时此进程也不会停止。
@@ -305,30 +287,6 @@ uWSGI	 web服务
           ps -ef | grep 'uwsgi' | grep -v grep | awk '{print $2}' | xargs kill -9
           ```
         
-          问题一:
-          
-          uWSGI启动正常,页面报错 Internal Server Error 响应500
-          
-          ​	1.uwsgi 关闭了
-          
-          ​		sudo uwsgi --stop uwsgi.pid
-          
-          ​		ps aux|grep 'uwsgi'   如果输出只有一行,则uwsgi已关闭
-          
-          ​	2.启动python3 manage.py runserver(debug需要为True)
-          
-          ​	3.启动uwsgi 查看日志
-          
-          问题二:
-          
-          uWSGI无法启动,则去查看日志
-          
-          ​	1.Address already use 端口重复占用,确保端口已释放
-          
-          ​		sudo lsof -i:8000 检查当前端口占用情况
-          
-          ​		sudo kill -9 pid
-          
           
     
 - 测试:
@@ -431,27 +389,7 @@ uWSGI	 web服务
         ...      
     }
     ```
-```py
-排查思路
-1.debug = True
-2.python3 manage.py runserver 6000
-3.浏览器访问 127.0.0.1:6000/...
-4. debug=False
-	ALLOWED_HOST = ['127.0.0.1']
-5.启动uwsgi[socket] - 检查是否启动
-
-nginx:
-浏览器访问 127.0.0.1/...
-检查nginx access log 是否有请求进来
-检查uwsgi.log
-
-如果nginx有请求, uwsgi.log没有日志【页面502-uwsgi启动失败/404 - nginx转发配置】
-```
-
-
-
 ### 404/500 界面 
-
 - 在模板文件夹内添加 404.html 模版，当视图触发Http404 异常时将会被显示
 - 404.html 仅在发布版中(即setting.py 中的 DEBUG=False时) 才起作用
 - 当向应处理函数触发Http404异常时就会跳转到404界面
