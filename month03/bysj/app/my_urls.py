@@ -11,7 +11,6 @@ def public():
     return public_view()
 
 
-
 @webapp.route('/index', methods=['GET', 'POST'])
 @webapp.route('/', methods=['GET', 'POST'])
 def index():
@@ -41,6 +40,18 @@ def personal():
 def about():
     url_for(sys._getframe().f_code.co_name)
     return about_view()
+
+
+@webapp.route('/single', methods=['GET', 'POST'])
+def about():
+    url_for(sys._getframe().f_code.co_name)
+    return signel_view()
+
+
+@webapp.route('/cart', methods=['GET', 'POST'])
+def about():
+    url_for(sys._getframe().f_code.co_name)
+    return cart_view()
 
 
 @webapp.route('/test', methods=['GET', 'POST'])

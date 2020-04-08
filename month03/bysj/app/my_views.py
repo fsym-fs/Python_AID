@@ -3,8 +3,6 @@ from app.my_models import User
 from app.my_models import Person
 
 
-
-
 def public_view():
     return render_template('public_html.html')
 
@@ -34,6 +32,7 @@ def personal_view():
     else:
         pass
 
+
 def about_view():
     if request.method == 'GET':
         return render_template('about.html')
@@ -42,6 +41,25 @@ def about_view():
     else:
         pass
 
+
+def single_view():
+    if request.method == 'GET':
+        return render_template('single.html')
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
+
+
+def cart_view():
+    if request.method == 'GET':
+        return render_template('cart.html')
+    elif request.method == 'POST':
+        pass
+    else:
+        pass
+
+
 def test_view():
     if request.method == 'GET':
         return render_template('test.html')
@@ -49,8 +67,6 @@ def test_view():
         pass
     else:
         pass
-
-
 
 
 def person_view():

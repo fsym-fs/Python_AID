@@ -1,0 +1,92 @@
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
+{% endblock %}
+
+{% block mycontent %}
+
+    <!--主体内容-->
+    <div class="content" style="margin: 19px">
+        <br>
+        <div class="container" style="margin-top: 2%;">
+            <div class="all_goods">
+                <h3 class="pull-left" style="color: red;"> 
+                    全部商品&nbsp;
+                    <small style="color: red;">1</small>
+                </h3>
+                <div class="pull-right">
+                    <h4 class="pull-left" style="padding-top: 5px;">
+                        配 送 至
+                    </h4>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <select>
+                        <option value="province">请选择省份</option>
+                    </select>
+                    &nbsp;
+                    <select name="city" id="">
+                        <option value="city">请选择城市</option>
+                    </select>
+                    &nbsp;
+                    <select name="county" id="">
+                        <option value="county">请选择县城</option>
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <br>
+            <br>
+            <div class="cart">
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                    <tr>
+                        <th>全选</th>
+                        <th>商品</th>
+                        <th>单价</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="width: 150px; height: 150px;">
+                            <img style="width: 150px; height: 150px;" src="../static/img/good01.jpg" alt="" srcset="">
+                        </td>
+                        <td>华硕(ASUS) 飞行堡垒7 英特尔酷睿i7 120Hz高速屏游戏笔记本电脑</td>
+                        <td>¥7999.00</td>
+                        <td>Bangalore</td>
+                        <td>¥7999.00</td>
+                        <td>Bangalore</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div class="paying">
+                <div class="left pull-left">
+                    <label>
+                        <input type="checkbox" name="all" id="all">
+                        &nbsp;&nbsp;全选&nbsp;&nbsp;
+                    </label>
+                    <label>删除选中商品&nbsp;&nbsp;</label>
+                    <label>清理购物车&nbsp;&nbsp;</label>
+                </div>
+                <div class="right pull-right">
+                    <label>已选择<b style="color: red;">2</b>件商品&nbsp;&nbsp;</label>
+                    <label>
+                        总价:
+                        <b style="color: red;">
+                            ¥7999.00&nbsp;&nbsp;
+                        </b>
+                        <span class="glyphicon glyphicon-leaf" aria-hidden="true">&nbsp;&nbsp;</span>
+                    </label>
+                    <button class="btn btn-danger">去结算</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+

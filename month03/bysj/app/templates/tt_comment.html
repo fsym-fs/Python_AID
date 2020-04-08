@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <style>
+        .list-group-item .row{
+            padding: 10px;
+            padding-bottom: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="text-center">
+                <strong class="text-success">HELLO</strong> 
+                <small>
+                    tarena
+                </small>
+            </h1>
+        </header>
+
+        <div class="context">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <label for="uname">Name</label>
+                        <input type="text" class="form-control" id="uname" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="centent">Message</label>
+                        <textarea id="centent" class="form-control" rows="5"></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-default center-block">Submit</button>
+                </div> 
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <!-- 组件，列表组 -->
+                    <div class="list-group">
+                        <div class="list-group-item" id="content">
+                            
+                        </div>
+                        <!-- <div class="list-group-item">
+                            <p class="text-center">
+                                感谢您的使用!
+                            </p>
+                        </div>     -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="text-center">
+            <small>
+                &copy; 2020 <a href="#">Franckisses</a>/ <a href="#">HHH</a>
+            </small>
+            <p>
+                <a href="#">&uarr;</a>
+            </p>
+        </footer>
+    </div>
+    <script>
+        $(function(){
+            //是否可以继续向下滚动
+            canLoad = true
+            function AddContent(data){
+                    var str = ''
+                    color = ['warning','danger','primary','success','info']
+                    if(data.code==200){
+                        $.each(data.datas,function(i,obj){
+                        str += '<div class="person_con row bg-'+color[(i+1)%5-1]+'">'
+                        str += '<a href="#" class="pull-left">'
+                        str += '<h4 class="text-success">'
+                        str += obj.username
+                        str += '<small>'
+                        str += '第'+obj.num+'条评论'
+                        str += '</small>'
+                        str += '</h4>'
+                        str += '</a>'
+                        str += '<h4 class="pull-right">'
+                        str += obj.time
+                        str += '</h4>'
+                        str += '<div class="clearfix"></div>'
+                        str += '<p>'
+                        str += '<h5>'
+                        str += obj.content
+                        str += '</h5>'
+                        str += '</p>'
+                        str += '</div>'
+                        })
+                        $('#content').append(str)
+                    }
+                    else{
+                        alert(data.data)
+                        canLoad = false
+                        str += '<div class="list-group-item">'
+                        str += '<p class="text-center">'
+                        str += '感谢您的使用!'
+                        str += '</p>'    
+                        str +='</div>' 
+                        $('.list-group').append(str)    
+                    }
+                    
+                    
+                }
+            $.ajax({
+                url:"http://127.0.0.1:5000/data",
+                dataType:"json",
+                type:"get",
+                success:function(res){
+                    AddContent(res)
+                },
+                error:function(){
+                    alert("404!")
+                }
+            })
+            
+            // 滚动条事件
+            // window.onscroll = function(){
+            //     console.log("start")
+            // }
+            //jquery滚动条事件
+            $(document).scroll(function(){
+                // 获取当前滚动条的高度(green)
+                var scrollT = $(document).scrollTop()
+                // 获取可视范围的高度
+                var windowH = $(window).height()
+                // 获取完整文档的高度
+                var documentH = $(document).height()
+                // console.log(scrollT,windowH,documentH)
+                if(scrollT + windowH == documentH){
+                    console.log('到底了...')
+                    //向服务端发生请求，获取10条数据
+                    var size = $('.person_con').length;
+                    console.log(size)
+                    if(canLoad){
+                        $.ajax({
+                        url:"http://127.0.0.1:5000/data?size="+size,
+                        dataType:'json',
+                        type:'get',
+                        success:function(res){
+                            AddContent(res)
+                        },
+                        error:function(){
+                            alert('404')
+                        }
+                        })
+                    }
+                }
+            })
+        })
+    </script>
+    <script>
+        $('.btn').click(function(){
+            var username = $('#uname').val()
+            var content = $('#centent').val()
+            if(content!='' && username!=''){
+                $.ajax({
+                    url : "http://127.0.0.1:5000/add",
+                    type : 'post',
+                    dataType:'json',
+                    contentType:'application/json',
+                    data : JSON.stringify({
+                        username:username,
+                        content :content
+                    }),
+                    success: function(res){
+                        console.log(res)
+                        alert(res.msg)
+                        window.location.reload();
+                    },
+                })
+            }
+            else{
+                alert('请填写内容!')
+            }
+        })
+    </script>
+</body>
+</html>
