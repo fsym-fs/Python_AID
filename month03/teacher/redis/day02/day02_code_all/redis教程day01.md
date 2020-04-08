@@ -9,8 +9,7 @@
 2、高性能的Key-Value的NoSQL数据库
 3、支持数据类型丰富，字符串strings，散列hashes，列表lists，集合sets，有序集合sorted sets 等等
 4、支持多种编程语言（C C++ Python Java PHP ... ）
-5、'单进程'单线程
-6.非关系型数据库
+5、‘单进程’单线程
 ```
 
 - **与其他数据库对比**
@@ -36,7 +35,7 @@
 
 ```python
 1、最新版本：5.0
-2、常用版本：2.4、2.6、2.8、3.0(里程碑)-redis集群、3.2、3.4、4.0(教学环境版本)、5.0
+2、常用版本：2.4、2.6、2.8、3.0(里程碑)、3.2、3.4、4.0(教学环境版本)、5.0
 ```
 
 - **Redis附加功能**
@@ -65,7 +64,6 @@ sudo apt-get install redis-server
 sudo /etc/init.d/redis-server status | start | stop | restart
 # 客户端连接
 redis-cli -h IP地址 -p 6379 -a 密码
-(6379是redis默认端口)
 ```
 
 ## **配置文件详解**
@@ -84,7 +82,13 @@ mysql的配置文件在哪里？ : /etc/mysql/mysql.conf.d/mysqld.cnf
 2、重启服务
    sudo /etc/init.d/redis-server restart
 3、客户端连接
+   方案1
    redis-cli -h 127.0.0.1 -p 6379 -a 123456
+   127.0.0.1:6379>ping
+        
+   方案2
+   redis-cli
+   127.0.0.1:6379>auth 密码
    127.0.0.1:6379>ping
 ```
 
@@ -99,42 +103,7 @@ mysql的配置文件在哪里？ : /etc/mysql/mysql.conf.d/mysqld.cnf
   sudo /etc/init.d/redis-server restart
 ```
 
-
-
-
-
-## ** redis如何解决过期问题(内部原理)**
-
-**lru淘汰**
-
-过期key的处理
-
-```shell
-主动扫描
-    1.redis 会将带过期时间的key会统一放在一个专门存放key的字典里
-    2.每隔100ms会执行一次对过期字典的扫描
-        1) 在过期字典中随机挑选20个key
-        2)检查这20个key的过期时间,删除过期key
-        3)如果过期key比例超过总key的1/4,则重复1)->3)
-        扫描含有25ms超时检测,避免扫描过程卡死
-            可以竟可能的分散过期key的过期时间
-            eg:expire key_1 300+(1-30)
-            大量key同时过期,会引发25ms卡顿问题,因此竟可能的让过期key的过期时间分散(1-30s偏移)
-                
-惰性删除
-	在取key的时候，会检测此key是否过期，如果过期，则进行删除
-    1.获取key值的时候,进行过期时间检查
-    2.检查是否当前内存达到maxmemory,达到上限后,会触发淘汰策略
-    	noeviction   写服务拒绝,读请求可以继续执行   (默认配置)
-        volatile-lru    对所有带过期时间的key进行lru淘汰
-        volatile-ttl     对所有带过期时间的key,ttl越小，优先淘汰
-```
-
-
-
-
-
-## 数据类型**
+## **数据类型**
 
 - **通用命令 ==适用于所有数据类型==**
 
@@ -176,10 +145,8 @@ get key
 # 3. key不存在时再进行设置(nx)
 set key value nx  # not exists
 # 4. 设置过期时间(ex)
-方法一:set key value ex seconds
-方法二:
-set uuu a
-EXPIRE uuu 10
+set key value ex seconds
+
 # 5. 同时设置多个key-value
 mset key1 value1 key2 value2 key3 value3
 # 6. 同时获取多个key-value
@@ -203,8 +170,8 @@ append key value
 
 ```python
 # 整数操作
-INCRBY key 步长(给该值+x)
-DECRBY key 步长(给该值-x)
+INCRBY key 步长
+DECRBY key 步长
 INCR key : +1操作
 DECR key : -1操作
 # 应用场景: 抖音上有人关注你了，是不是可以用INCR呢，如果取消关注了是不是可以用DECR
@@ -253,10 +220,9 @@ OK
 3、pexpire[通用] key 5 # 毫秒
 # 查看存活时间
 ttl[通用] key
-	返回值 >0 代表此key的存活剩余时间
-    返回值<0:
-        	-2 代表此key不存在
-            -1 代表cikey没有过期时间
+   返回值 >0  代表此key的存活剩余时间 【单位秒】
+         -2  代表key不存在
+         -1  代表此key没有过期时间，则此key为常驻redis的key
 # 删除过期
 persist[通用] key
 ```
@@ -275,33 +241,58 @@ persist[通用] key
 
 ```python
 1、查看 db0 库中所有的键
-#select 0
-#keys *
+   #select 0
+   #keys *
 2、设置键 trill:username 对应的值为 user001，并查看
-   # set trill:username user001
+    #set trill:username user001
     #get trill:username
 3、获取 trill:username 值的长度
     #strlen trill:username
-4、一次性设置 trill:password 、trill:gender、trill:fansnumber 并查看（值自定义）    
-    #myset trill:password 123 trill:gender 555 trill:fansnumber 500
+4、一次性设置 trill:password 、trill:gender、trill:fansnumber 并查看（值自定义）
+    #mset trill:password 123 trill:gender M trill:fansnumber 500
 5、查看键 trill:score 是否存在
     #exists trill:score
 6、增加10个粉丝
-	#incrby trill:fansnumber 10
+    #incrby trill:fansnumber 10
 7、增加2个粉丝（一个一个加）
-	# incr trill:fansnumber
-    # incr trill:fansnumber
+    #incr trill:fansnumber
+    #incr trill:fansnumber
 8、有3个粉丝取消关注你了
-	# decrby trill:fansnumber 3
+    #decrby trill:fansnumber 3
 9、又有1个粉丝取消关注你了
-	# decr trill:fansnumber
 10、思考、思考、思考...,清除当前库
-	# flushdb
+    #flushdb
 11、一万个思考之后，清除所有库
-	# flushall
+    #flushall
 ```
 
-### **列表数据类型（List）**
+
+
+过期key的处理
+
+```shell
+主动扫描
+1,redis会将带过期时间的key 统一放置在一个 过期字典 的地方
+2,每100ms执行一次 对 过期字典的 扫描
+     1) 在过期字典中随机挑选20个key
+     2) 检查这20个key的过期时间，删除过期key
+     3) 如果过期key比例超过 总key的 1/4 重复 1）- 3）
+     25ms超时时间，避免扫描过程卡死  
+   
+   大量key同时过期，会引发25ms卡顿问题，解决方案为，尽可能让key的过期时间分散  例如 expire key_1 300 + (1-30s的随机值偏移)
+
+惰性删除
+   1，获取key的时候，进行过期时间检查
+   2，检查是否当前内存达到maxmemory，达到上限后，触发淘汰策略
+      noeviction 写服务拒接/读请求  默认配置
+      volatile-lru 对所有带过期时间的key 进行lru淘汰
+      volatile-ttl 对所有带过期时间的key ttl越小的优先淘汰
+
+```
+
+
+
+### 列表数据类型（List）
 
 - **特点**
 
@@ -321,7 +312,7 @@ persist[通用] key
 	LPUSH key value1 value2 
 2、从列表尾部压入元素
 	RPUSH key value1 value2
-3、从列表src尾部弹出1个元素,压入到列表dst的头部
+3、从列表src尾部弹出1个元素,压到列表dst的头部
 	RPOPLPUSH src dst
 4、在列表指定元素后/前插入元素
 	LINSERT key after|before value newvalue
@@ -365,24 +356,23 @@ persist[通用] key
 
 ```python
 1、查看所有的键
-# keys *
+  # keys *
 2、向列表 spider:urls 中以RPUSH放入如下几个元素：01_baidu.com、02_taobao.com、03_sina.com、04_jd.com、05_xxx.com
-# RPASH spider:urls 01_baidu.com 02_taobao.com  03_sina.com 04_jd.com 05_xxx.com  
+  # RPUSH spider:urls 01_baidu.com
 3、查看列表中所有元素
-# LRANGE spider:urls 0 -1
+  # LRANGE spider:urls 0 -1
 4、查看列表长度
-#LLEN spider:urls
+  # LLEN spider:urls
 5、将列表中01_baidu.com 改为 01_tmall.com
-# LSET spider:urls 0 01_tmall.com
+  # LSET spider:urls 0 01_tmall.com
 6、在列表中04_jd.com之后再加1个元素 02_taobao.com
-# RPASH spider:urls 02_taobao.com
-# LINSERT spider:urls after 04_jd.com 02_taobao.com
+  # LINSERT spider:urls after 04_jd.com 02_taobao.com
 7、弹出列表中的最后一个元素
-# RPOP spider:urls
+  # RPOP spider:urls
 8、删除列表中所有的 02_taobao.com
-# LREM spider:urls 0 02_taobao.com
+  # LREM spider:urls 0 02_taobao.com
 9、剔除列表中的其他元素，只剩前3条
-# LTRIM spider 0 2
+  # LTRIM spider:urls 0 2
 ```
 
 ## **与python交互**
@@ -406,29 +396,27 @@ r = redis.Redis(host='127.0.0.1',port=6379,db=0,password='123456')
 - **通用命令代码示例**
 
 ```python
-# 通用命令
+# key_list = r.keys('*')
+# for key in key_list:
+#     print(key)
 
-key_list = r.keys('*')
-# 返回字节型
-for key in key_list:
-    print(key)
-
-# 返回值:1 代表存在,0代表不存在
-print(r.exists('uname'))
+#返回值 1 代表存在  0 代表不存在
+#print(r.exists('l1'))
 ```
 
 - **python操作list**
 
 ```python
-# list#
-r.lpush('pyl1', 'a', 'b', 'c', 'd', 'e', 'f')
-print(r.lrange('pyl1', 0, -1))
+#r.lpush('pyl1','a','b','c','d')
+#返回值 [b'd', b'c', b'b', b'a']
+#print(r.lrange('pyl1',0, -1))
 
-print(r.rpop('pyl1'))
+#返回值 字节串
+#print(r.rpop('pyl1'))
 
-print(r.ltrim('pyl1', 0, 2))
-
-print(r.lrange('pyl1', 0, -1))
+#返回值 True 代表成功
+#print(r.ltrim('pyl1', 0, 1))
+#print(r.lrange('pyl1', 0, -1))
 ```
 
 **list案例: 一个进程负责生产任务，一个进程负责消费任务**
@@ -436,57 +424,49 @@ print(r.lrange('pyl1', 0, -1))
 进程1: 生产者
 
 ```python
-"""
-    **list案例: 一个进程负责生产任务，一个进程负责消费任务**
-"""
+#模拟生产者
 import redis
 import json
 
-r = redis.Redis(host='127.0.0.1', port=6379, db=0, password='123456')
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
-json_obj = {'task': 'send_email', 'from': 'ligoucong', 'to': 'licong@qq.com', 'content': 'xxxxx'}
-
+json_obj = {'task':'send_email', 'from':'guoxiaonao','to':'a@qq.com','content':'xxxx'}
 json_str = json.dumps(json_obj)
 
-# 先进先出
+#先进先出 lpush rpop
 r.lpush('pypc', json_str)
-
 ```
 
 进程2: 消费者
 
 ```python
-"""
-    **list案例: 一个进程负责生产任务，一个进程负责消费任务**
-"""
+#模拟消费者
 import redis
 import json
 
-r = redis.Redis(host='127.0.0.1', port=6379, db=0, password='123456')
+r = redis.Redis(host='127.0.0.1', port=6379, db=0)
 
 while True:
     task = r.brpop('pypc', 5)
-    print('task:',task)
+    print(task)
     if task:
         json_obj = json.loads(task[1])
-        print(json_obj)
-
 ```
 
 - **python操作string**
 
 ```python
-# string #
-
-r.set('pyuname', 'Jarry')
-print(r.get('pyuname'))
+# r.set('pyusername', 'guoxiaonao')
+# print(r.get('pyusername'))
 
 # mset key1 value1 key2 value2
-r.mset({'pyun1': 'Tom', 'pyun2': 'Jam'})
-print(r.mget('pyun1', 'pyun2'))
+#r.mset({'pyusername1':'wanglaoshi','pyusername2':'lvlaoshi'})
+#[b'wanglaoshi', b'lvlaoshi']
+#print(r.mget('pyusername1', 'pyusername2'))
 
-r.incr('pyage')
-print(r.incrby('pyage', 10))
+#r.incr('pyage')
+#返回值是 int
+#print(r.incrby('pyage',10))
 ```
 
 
