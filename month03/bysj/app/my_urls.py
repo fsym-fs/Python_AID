@@ -43,13 +43,13 @@ def about():
 
 
 @webapp.route('/single', methods=['GET', 'POST'])
-def about():
+def signle():
     url_for(sys._getframe().f_code.co_name)
-    return signel_view()
+    return single_view()
 
 
 @webapp.route('/cart', methods=['GET', 'POST'])
-def about():
+def cart():
     url_for(sys._getframe().f_code.co_name)
     return cart_view()
 
