@@ -3,6 +3,7 @@ import sys
 from app import *
 from app.my_views import *
 from flask import url_for
+from app.users.views import *
 
 
 @webapp.route('/public')
@@ -60,20 +61,18 @@ def test():
     return test_view()
 
 
-# 查询
-@webapp.route('/user')
-def users():
-    url_for(sys._getframe().f_code.co_name)
-    return users_view()
+# # 查询
+# @webapp.route('/user')
+# def users():
+#     url_for(sys._getframe().f_code.co_name)
+#     return users_view()
 
+# @webapp.route('/user/<int:id>')
+# def user(id):
+#     url_for(sys._getframe().f_code.co_name, name=id)
+#     return user_view(id)
 
-@webapp.route('/user/<int:id>')
-def user(id):
-    url_for(sys._getframe().f_code.co_name, name=id)
-    return user_view(id)
-
-
-@webapp.route('/persons')
-def persons():
-    url_for(sys._getframe().f_code.co_name)
-    return person_view()
+# @webapp.route('/persons')
+# def persons():
+#     url_for(sys._getframe().f_code.co_name)
+#     return person_view()

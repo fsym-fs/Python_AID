@@ -4,11 +4,16 @@ import time
 
 from django.http import JsonResponse
 from django.shortcuts import render
-from user.models import UserProfile
+
 from django.conf import settings
+from user.models import UserProfile
 
 #10200-10299
 # Create your views here.
+
+# login
+
+
 def tokens(request):
 
     if request.method != 'POST':

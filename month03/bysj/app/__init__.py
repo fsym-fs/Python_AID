@@ -22,7 +22,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 #  os.path.join　把basedir和data.sqlite的路径拼接起来#
 # data.sqlite为数据库文件，若该文件夹下没有这个文件会自动创建
 
-webapp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.sqlite')
+webapp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'bysj.sqlite')
 # 配置这个键之后，每次请求结束之后都会提交数据库的变动
 webapp.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
