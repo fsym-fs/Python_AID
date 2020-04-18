@@ -4,9 +4,29 @@ from app import *
 from app.my_views import *
 from flask import url_for
 from app.users.views import *
+from app.admin.views import *
 
 
-@webapp.route('/public')
+@webapp.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    url_for(sys._getframe().f_code.co_name)
+    return admin_login_view()
+
+
+@webapp.route('/admin/index', methods=['GET', 'POST'])
+def admin_index():
+    url_for(sys._getframe().f_code.co_name)
+    return admin_index_view()
+
+
+@webapp.route('/admin/home', methods=['GET', 'POST'])
+def admin_home():
+    url_for(sys._getframe().f_code.co_name)
+    return admin_home_view()
+
+
+# ----------------------------------------------------------------------------
+@webapp.route('/public', methods=['GET', 'POST'])
 def public():
     url_for(sys._getframe().f_code.co_name)
     return public_view()
@@ -72,7 +92,8 @@ def test():
 #     url_for(sys._getframe().f_code.co_name, name=id)
 #     return user_view(id)
 
-# @webapp.route('/persons')
-# def persons():
-#     url_for(sys._getframe().f_code.co_name)
-#     return person_view()
+
+@webapp.route('/pa')
+def pa():
+    url_for(sys._getframe().f_code.co_name)
+    return pa_view()

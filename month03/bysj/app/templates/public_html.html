@@ -15,7 +15,6 @@
     {% endblock %}
 </head>
 <body>
-
 <nav id="public_header" class="header">
     <div class="header-top">
         <div class="container" style="margin-bottom: 0;">
@@ -38,7 +37,12 @@
                         <div class="header-grid header_log">
                             <img src="../static/img/四叶草.jpg" class="img-circle" alt="Cinque Terre">
                         </div>
-                        <div class="header-grid-right">
+                        <div id="kinds" class="header-grid-right">
+                            <!-- <a href="#">
+                                <h3 class="pull-right">
+                                    556&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </h3>
+                            </a> -->
                             <a href="/login" class="sign-in">登录</a>
                             <form>
                                 <input type="text" value="" placeholder="用户名">
@@ -48,6 +52,48 @@
                             <label>|</label>
                             <a href="/register" class="sign-up">注册</a>
                         </div>
+                        <script>
+                            $(function(){ 
+                                var uname = window.localStorage.getItem('uname');
+                                var token = window.localStorage.getItem('token');
+                                if(token){
+                                    $.ajax({
+                                        type:'post',
+                                        url:'http://127.0.0.1:5000/public',
+                                        contentType:'application/json',
+                                        dataType:'json',
+                                        data:JSON.stringify({
+                                            'uname':uname,
+                                            'token':token,
+                                        }),
+                                        success:function(data){
+                                            if(data.code == 200){
+                                                console.log("ok");
+                                                html = '<h4 class="pull-right">'
+                                                html += '欢迎&nbsp;&nbsp;&nbsp;'
+                                                html += '<a href="#">'
+                                                html += uname
+                                                html += '</a>'
+                                                html += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+                                                html+='</h4>'
+                                                $('#kinds').html(html);
+                                            }
+                                            else{
+                                                alert(data.error)
+                                            }
+                                        },
+                                        error:function(){
+                                            console.log('789')
+                                        }
+
+                                    });
+                                }
+                                else{
+
+                                }
+                               
+                        　　}); 
+                        </script>
                         <div class="clearfix"></div>
                     </div>
                 </div>

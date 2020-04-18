@@ -14,7 +14,7 @@ class Person(db.Model):
     # nullable 是否可以为空
     pwd = db.Column(db.String(11), nullable=False)
     email = db.Column(db.String(50), unique=False, default='')
-    phone = db.Column(db.String(11), unique=True, nullable=False)
+    phone = db.Column(db.String(11), unique=False, nullable=False)
     signature = db.Column(db.String(200))
     address = db.Column(db.String(200))
     is_active = db.Column(db.Boolean, default=True)
@@ -26,7 +26,7 @@ class Person(db.Model):
         self.email = email
 
     def __repr__(self):
-        pass
+        return '<User %r>' % self.uname
 
 
 # 创建表格、插入数据

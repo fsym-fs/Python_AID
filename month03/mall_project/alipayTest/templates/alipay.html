@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>支付测试</title>
+    <script src="/static/js/jquery-1.11.3.js"></script>
+</head>
+<body>
+
+<button id="Btn_pay">
+    点击支付
+</button>
+<script>
+    var post_data = {'order_id':"202004181607126"};
+    $(function () {
+        $('#Btn_pay').click(function () {
+            // console.log('123');
+            $.ajax({
+                type: 'post',
+                data: JSON.stringify(post_data),
+                url: 'http://127.0.0.1:8000/payment/jump',
+                datatype: 'json',
+                contentType: 'application/json',
+                success: function (data) {
+                    // console.log(data.pay_url);
+                    window.location = data.pay_url
+                },
+                error: function () {
+                    alert('请求未发送成功!');
+                },
+            });
+        });
+    });
+
+</script>
+</body>
+</html>

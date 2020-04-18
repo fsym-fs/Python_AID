@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'user',
-    'dtoken'
+    'dtoken',
+    'goods',
+    'carts',
+    'order',
 ]
 
 MIDDLEWARE = [
@@ -114,12 +117,27 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+# 会自动添加路由
 STATIC_URL = '/static/'
+# STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
+
+# 用户上传文件配置
+# 用户上传的文件叫Media_files(媒体文件),而非静态文件
+# 标识出什么样的请求是访问媒体文件的请求;'http://127.0.0.1:8000/media/'->代表当前请求想加载媒体请求
+# 需要添加路由
+MEDIA_URL = '/media/'
+# 用户上传的媒体文件的存储目录;以及加载请求过来后,django去该目录下寻找资源
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+if DEBUG:
+    PIC_URL = 'http://127.0.0.1:8000' + MEDIA_URL
+else:
+    pass
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -145,6 +163,8 @@ CORS_ALLOW_HEADERS = (
 
 JWT_TOKEN_KEY = '1234567'
 
+# from django_redis.compressors.zlib import ZlibCompressor
+
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
@@ -152,8 +172,38 @@ CACHES = {
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }
-    }
+    },
+    "goods": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/5",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # 启动压缩
+            'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+        }
+    },
+    "goods_detail": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/6",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # 启动压缩
+            'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+        }
+    },
+    "carts": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/4",
+        # 设置默认过期时间
+        "TIMEOUT": None,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # 启动压缩
+            'COMPRESSOR': 'django_redis.compressors.zlib.ZlibCompressor',
+        }
+    },
 }
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25

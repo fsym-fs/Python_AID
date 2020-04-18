@@ -4,7 +4,7 @@ import time
 
 from django.http import JsonResponse
 from django.shortcuts import render
-
+from carts.views import CartsView
 from django.conf import settings
 from user.models import UserProfile
 
@@ -42,6 +42,13 @@ def tokens(request):
     token = make_token(username)
 
     result = {'code':200, 'username':username, 'data':{'token':token.decode()}, 'carts_count':0}
+
+    # 合并购物车
+    carts_data = json_obj.get('carts')
+    carts_obj = CartsView()
+    carts_len = carts_obj.merge_carts(user.id,carts_data)
+    result['carts_count'] = carts_len
+
     return JsonResponse(result)
 
 

@@ -13,13 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url,include
+from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 from . import views
+from django.conf import settings
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^test_cors$',views.test_cors),
+    url(r'^test_cors$', views.test_cors),
     url(r'^v1/users', include('user.urls')),
-    url(r'^v1/tokens',include('dtoken.urls'))
+    url(r'^v1/tokens', include('dtoken.urls')),
+    url(r'^v1/goods',include('goods.urls')),
+    url(r'^v1/carts',include('carts.urls')),
+    url(r'^v1/orders',include('order.urls')),
 ]
+
+# 绑定media_url和media_root
+# 上线时需要在nginx里和static一样重新配置
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
