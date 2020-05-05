@@ -1,0 +1,3 @@
+href:
+//*[@id="search-filter"]/div[2]/div[2]/div[3]/div/a[?]/text()
+//*[@id="search-filter"]/div[2]/div[2]/div[3]/div/a[?]/@href

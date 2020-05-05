@@ -8,6 +8,7 @@
 </head>
 <body>
     <button id="btn">click on</button>
+    <button id="btn2">click2 on</button>
     <!-- <script>
         $('#btn').click(function(){
             $.ajax({
@@ -22,7 +23,19 @@
     <!-- <script src="../static/demo01.js"></script>
     <script src="http://127.0.0.1:5001/cross_server?name=Tom">
     </script> -->
-    
+    <!-- 法二 (只允许get)-->
+    <script>
+        $("#btn2").click(function(){
+            $.ajax({
+                url:'http://127.0.0.1:5001/cross_server',
+                dataType:'jsonp',
+                type:'get',
+                success:function(res){
+                    console.log(res.msg)
+                }
+            })
+        })
+    </script>
     <!-- 法一 -->
     <script src="">
         function print(res){

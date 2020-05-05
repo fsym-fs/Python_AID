@@ -1,0 +1,8 @@
+from: en
+to: zh
+query: hello
+transtype: realtime
+simple_means_flag: 3
+sign: 54706.276099
+token: 26dedd8905ad5b858639d457bff7daa5
+domain: common

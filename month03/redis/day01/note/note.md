@@ -433,6 +433,8 @@ print(r.lrange('pyl1', 0, -1))
 
 **list案例: 一个进程负责生产任务，一个进程负责消费任务**
 
+![](/home/tarena/桌面/VsCode/month03/redis/day02/note/redis01&02(复件).jpg)
+
 进程1: 生产者
 
 ```python

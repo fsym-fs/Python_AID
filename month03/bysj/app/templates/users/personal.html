@@ -2,244 +2,151 @@
 
 {% block mystyle %}
 <style>
-    .content {
-        width: 66%;
-        box-sizing: border-box;
-        padding: 5%;
-    }
+        .content {
+            {#background-color: #00FFFF;#}
+            width: 66%;
+            box-sizing: border-box;
+            padding: 5%;
+        }
 
-    .person_content {
-        width: 70%;
-        box-sizing: border-box;
-        padding: 5%;
-    }
+        .person_content{
+            width: 70%;
+            box-sizing: border-box;
+            padding: 5%;
+        }
 
-    .nav_left {
-        margin-left: 30%;
-    }
+        .nav_left {
+            margin-left: 30%;
+        }
 
-    .nav_right {
-        margin-right: 30%;
-    }
+        .nav_right {
+            margin-right: 30%;
+        }
 
-    .login_body {
-        /*background-color: #b5ed94;*/
-    }
+        .login_body {
+            /*background-color: #b5ed94;*/
+        }
 
-    .verify_left {
-        /*margin-left: 10%;*/
-    }
+        .verify_left {
+            /*margin-left: 10%;*/
+        }
 
-    .verify_right {
-        margin-right: 20%;
-    }
-</style>
+        .verify_right {
+            margin-right: 20%;
+        }
+    </style>
 {% endblock %}
 
 {% block mycontent %}
 
-<!--主体内容-->
-<div class="login_body">
+    <!--主体内容-->
+    <div class="login_body">
     <div class="container">
         <div class="content center-block">
             <!-- 导航区 -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="bg-info pull-left nav_left"><a href="#personal" id="p1" role="tab"
-                        data-toggle="tab">用户信息</a></li>
-                <li role="presentation" class="bg-success pull-right nav_right"><a href="#modify" id="p2" role="tab"
-                        data-toggle="tab">修改信息</a></li>
+                <li role="presentation" class="active bg-info pull-left nav_left"><a href="#personal" role="tab" data-toggle="tab">用户信息</a></li>
+                <li role="presentation" class="bg-success pull-right nav_right"><a href="#modify" role="tab" data-toggle="tab">修改信息</a></li>
                 <div class="clearfix"></div>
             </ul>
 
             <!-- 面板区 -->
             <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="personal">
-                    <div class="person_content center-block">
-                        <h2 class="text-center">
-                            个人信息
-                            <small>随风潜相思@小店</small>
-                        </h2>
-                        <br>
-                        <div class="form-group center-block">
-                            <img src="../static/img/四叶草.jpg" class="img-circle header_pic center-block">
-                            <!--
+              <div role="tabpanel" class="tab-pane active" id="personal">
+                <div class="person_content center-block">
+                    <h2 class="text-center">
+                        个人信息
+                        <small>随风潜相思@小店</small>
+                    </h2>
+                    <br>
+                    <div class="form-group center-block">
+                    <img src="../static/img/四叶草.jpg" class="img-circle header_pic center-block">
+                    <!--
                     <input type="file" id="header_image" name="test"
                            accept="image/gif, image/jpeg, image/png, image/jpg" style="margin-left: 35%;">
                    -->
-                        </div>
-                        <div class="form-group">
-                            <label for="uname01">用户名</label>
-                            <input type="text" class="form-control" id="uname01" placeholder="请输入用户名" disabled>
-                        </div>
-                        <!-- <div class="form-group">
+                    </div>
+                    <div class="form-group">
+                        <label for="uname">用户名</label>
+                        <input type="text" class="form-control" id="uname" placeholder="请输入用户名" disabled>
+                    </div>
+                    <div class="form-group">
                         <label for="realname">真实姓名</label>
                         <input type="text" class="form-control" id="realname" placeholder="请输入真实姓名" disabled>
-                    </div> -->
-                        <div class="form-group">
-                            <label for="pwd01">密码</label>
-                            <input type="password" class="form-control" id="pwd01" maxlength="11" disabled>
-                        </div>
-                        <!--   邮箱     -->
-                        <div class="form-group">
-                            <label for="email01">邮箱</label>
-                            <input type="email" class="form-control" id="email01" disabled>
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">密码</label>
+                        <input type="password" class="form-control" id="pwd" maxlength="11" disabled>
+                    </div>
+                    <!--   邮箱     -->
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" class="form-control" id="email" disabled>
+                    </div>
 
-                        <div class="form-group">
-                            <label for="phone01">手机号</label>
-                            <input type="tel" class="form-control" id="phone01" maxlength="11" disabled>
-                        </div>
+                    <div class="form-group">
+                        <label for="phone">手机号</label>
+                        <input type="tel" class="form-control" id="phone" maxlength="11" disabled>
+                    </div>
 
-                        <br>
-                        <br>
-                        <script>
-                            $('#p1').click(function () {
-                                console.log('556');
-                            });
-                            $(function () {
-                                var token = window.localStorage.getItem('token');
-                                var uname = window.localStorage.getItem('uname');
-                                if (token) {
-                                    $('#uname01').val(uname)
-                                    $.ajax({
-                                        type: 'post',
-                                        url: 'http://127.0.0.1:5000/personal',
-                                        contentType: 'application/json',
-                                        data: JSON.stringify({
-                                            'this': 'this',
-                                            'uname': uname,
-                                        }),
-                                        dataType: 'json',
-                                        success: function (data) {
-                                            if (data.code == 200) {
-                                                $('#pwd01').val(data.pwd);
-                                                $('#email01').val(data.email);
-                                                $('#phone01').val(data.phone);
-                                                $('#uname02').val(uname);
-                                                // $('#pwd02').val(data.pwd);
-                                                // $('#pwd03').val(data.pwd);
-                                                $('#email02').val(data.email);
-                                                $('#phone02').val(data.phone);
-                                            }
-                                            else {
-                                                alert(data.error);
-                                                window.location.href = 'http://127.0.0.1:5000/login';
-                                            }
-                                        },
-                                        error: function () {
-                                            // alert('556')
-                                            console.log('error');
-                                        },
-                                    });
-                                }
-                                else {
-                                    alert('身份验证失败!请您登录账号^-^');
-                                    window.location.href = 'http://127.0.0.1:5000/login';
-                                }
-
-                            });
-                        </script>
-                        <!---
+                    <br>
+                    <br>
+                    <!---
                     <div class="form-group">
                         <button type="submit" class="btn btn-success center-block pull-left login_btn">提交</button>
                         <button type="reset" class="btn btn-warning center-block pull-right register_btn">置空</button>
                         <div class="clearfix"></div>
                     </div>
                     --->
+                </div>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="modify">
+                <div class="person_content center-block">
+                    <h2 class="text-center">
+                        个人信息
+                        <small>随风潜相思@小店</small>
+                    </h2>
+                    <br>
+                    <div class="form-group center-block">
+                    <img src="../static/img/四叶草.jpg" class="img-circle header_pic center-block">
+                    <br>
+                    <input type="file" id="header_image" name="test"
+                           accept="image/gif, image/jpeg, image/png, image/jpg" style="margin-left: 35%;">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="uname">用户名</label>
+                        <input type="text" class="form-control" id="uname" placeholder="请输入用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">密码</label>
+                        <input type="password" class="form-control" id="pwd" maxlength="11">
+                    </div>
+                    <!--   邮箱     -->
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" class="form-control" id="email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">手机号</label>
+                        <input type="tel" class="form-control" id="phone" maxlength="11">
+                    </div>
+
+                    <br>
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success center-block pull-left login_btn">提交</button>
+                        <button type="reset" class="btn btn-warning center-block pull-right register_btn">置空</button>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="modify">
-                    <div class="person_content center-block">
-                        <h2 class="text-center">
-                            个人信息
-                            <small>随风潜相思@小店</small>
-                        </h2>
-                        <br>
-                        <div class="form-group center-block">
-                            <img src="../static/img/四叶草.jpg" class="img-circle header_pic center-block">
-                            <br>
-                            <input type="file" id="header_image" name="test"
-                                accept="image/gif, image/jpeg, image/png, image/jpg" style="margin-left: 35%;">
-
-                        </div>
-                        <div class="form-group">
-                            <label for="uname02">用户名</label>
-                            <input type="text" class="form-control" id="uname02" placeholder="请输入用户名">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd02">旧密码</label>
-                            <input type="password" class="form-control" id="pwd02" maxlength="11">
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd03">新密码</label>
-                            <input type="password" class="form-control" id="pwd03" maxlength="11">
-                        </div>
-                        <!--   邮箱     -->
-                        <div class="form-group">
-                            <label for="email02">邮箱</label>
-                            <input type="email" class="form-control" id="email02">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone02">手机号</label>
-                            <input type="tel" class="form-control" id="phone02" maxlength="11">
-                        </div>
-
-                        <br>
-                        <br>
-                        <div class="form-group">
-                            <button id="s02" type="submit" class="btn btn-success center-block pull-left login_btn">提交</button>
-                            <button id="reset02" type="reset"
-                                class="btn btn-warning center-block pull-right register_btn">置空</button>
-                            <div class="clearfix"></div>
-                            <script>
-                                function reset() {
-                                    $('#uname02').val('');
-                                    $('#pwd02').val('');
-                                    $('#pwd03').val('');
-                                    $('#email02').val('');
-                                    $('#phone02').val('');
-                                }
-                                $('#reset02').click(reset);
-                                $('#s02').click(function(){
-                                    var old_name = window.localStorage.getItem('uname')
-                                    $.ajax({
-                                        type:'post',
-                                        url: 'http://127.0.0.1:5000/personal',
-                                        data:JSON.stringify({
-                                            'old_name':old_name,
-                                            'uname':$('#uname02').val(),
-                                            'pwd01':$('#pwd02').val(),
-                                            'pwd02':$('#pwd03').val(),
-                                            'email':$('#email02').val(),
-                                            'phone':$('#phone02').val(),
-                                        }),
-                                        contentType:'application/json',
-                                        dataType:'json',
-                                        success:function(data){
-                                            if(data.code == 200){
-                                                alert('信息修改成功!');
-                                                window.localStorage.setItem('token',data.data.token);
-                                                window.localStorage.setItem('uname',data.data.uname);
-                                                window.location.href = 'http://127.0.0.1:5000/personal';
-                                            }
-                                            else{
-                                                alert(data.error);
-                                                reset();
-                                            }
-                                        },
-                                        error:function(){
-                                            alert('445')
-                                        },
-                                    });
-                                });
-                            </script>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
         </div>
     </div>
 </div>
 
 {% endblock %}
+
+

@@ -44,8 +44,8 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" id="login_div">
                 <div class="form-group">
-                    <label for="l_uname">用户名</label>
-                    <input type="email" class="form-control" id="l_uname" placeholder="请输入用户名">
+                    <label for="uname">用户名</label>
+                    <input type="email" class="form-control" id="uname" placeholder="请输入用户名">
                 </div>
                 <div class="form-group">
                     <label for="pwd">密码</label>
@@ -62,56 +62,10 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <button id="l_btn" type="button" class="btn btn-success center-block pull-left login_btn">登录</button>
-                    <button id="my_r_btn" type="button" class="btn btn-warning center-block pull-right register_btn">注册</button>
+                    <button type="submit" class="btn btn-success center-block pull-left login_btn">登录</button>
+                    <button type="submit" class="btn btn-warning center-block pull-right register_btn">注册</button>
                     <div class="clearfix"></div>
                 </div>
-                <script>
-                    function reset(){
-                        $('#l_uname').val('');
-                        $('#pwd').val('');
-                        $('#pwd2').val('');
-                    };
-                    $('#my_r_btn').click(
-                        function(){
-                            window.location.href = 'http://127.0.0.1:5000/register';
-                        }
-                    );
-                    $('#l_btn').click(function(){
-                        if($('#pwd').val() == $('#pwd2').val())
-                        {
-                            $.ajax({
-                                type:'post',
-                                url:'http://127.0.0.1:5000/login',
-                                contentType:'application/json',
-                                dataType:'json',
-                                data:JSON.stringify({
-                                    'uname':$('#l_uname').val(),
-                                    'pwd':$('#pwd').val(),
-                                }),
-                                success:function(data){
-                                    // console.log(data);
-                                    if(data.code == 200){
-                                        window.localStorage.setItem('uname',data.uname);
-                                        window.localStorage.setItem('token',data.data.m_token);
-                                        window.localStorage.setItem('cart',data.data.cart);
-                                        alert('登录成功!');
-                                        window.location.href = 'http://127.0.0.1:5000/index';
-                                    }
-                                    else{
-                                        reset();
-                                        // console.log('556');
-                                        alert(data.error);
-                                    }
-                                },
-                            });
-                        }
-                        else{
-                            alert('两次密码不相同!');
-                            reset();
-                        }
-                    });
-                </script>
             </div>
         </div>
     </div>

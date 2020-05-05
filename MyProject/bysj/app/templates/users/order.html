@@ -1,0 +1,76 @@
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
+    <link rel="stylesheet" href="../../static/css/order_img.css">
+    <link rel="stylesheet" href="../../static/assets/css/layui.css">
+    <link rel="stylesheet" href="../../static/assets/css/login.css">
+{% endblock %}
+
+{% block mycontent %}
+    <!--主体内容-->
+    <div class="container">
+        {% if not lis %}
+            <br>
+            <br>
+            <br>
+            <br>
+            <br><br><br><br><br><br><br>
+            <h3 class="text-center" style="color: red">当前没有订单!</h3>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        {% endif %}
+        {% if lis %}
+            <br>
+            <ul class="rig columns-3 gallery2" id="con">
+                {% for i in lis %}
+                    <li><a target="_blank" href="../../static/img/background.jpg" class="popup" data-fancybox-group="group2">
+                        <img src="../../static/img/background.jpg" alt="Portfolio"></a>
+                        <h4 class="text-center"><a href="#">订单号:&nbsp;{{ i['oid'] }}</a></h4>
+                        <h4 class="text-center" style="margin-top: 10px">收件人:&nbsp;{{ i['name'] }}</h4>
+                        <h4 class="text-center" style="margin-top: 10px">手机号码:&nbsp;{{ i['phone'] }}</h4>
+                        <h4 class="text-center" style="margin-top: 10px">收件地址:&nbsp;{{ i['address'] }}</h4>
+                        <h4 class="text-center" style="margin-top: 10px">订单总价:&nbsp;¥&nbsp;{{ i['account'] }}</h4>
+                        <div class="clearfix"></div>
+                    </li>
+                {% endfor %}
+                <div class="clearfix"></div>
+            </ul>
+            <br>
+            <br>
+            <br>
+            <div>
+                <button id="o_up" style="width: 20%;margin-left: 20%" type="button" class="login-button pull-left">
+                    上一页<i class="ai ai-enter"></i>
+                </button>
+                <h3 class="pull-left" style="margin-left: 8%"> 第&nbsp;{{ page }}&nbsp;页 </h3>
+                <button id="o_down" style="width: 20%;margin-right: 20%" type="button" class="login-button pull-right">
+                    下一页<i class="ai ai-enter"></i>
+                </button>
+            <div class="clearfix"></div>
+            </div>
+                <script>
+                    $('#o_up').click(function () {
+                        var num = {{ page }}-1
+                        window.location.href = 'http://127.0.0.1:5000/order?uname='+window.localStorage.getItem('uname')+'&page='+num;
+                    })
+                    $('#o_down').click(function () {
+                        var num = {{ page }}+1
+                        window.location.href = 'http://127.0.0.1:5000/order?uname='+window.localStorage.getItem('uname')+'&page='+num;
+                    })
+                </script>
+            <br>
+            <br>
+        {% endif %} 
+
+    </div>
+
+{% endblock %}
+
+

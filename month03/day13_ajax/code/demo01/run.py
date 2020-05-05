@@ -35,9 +35,9 @@ def get_server_view():
     uname = request.args.get('uname')
     age = int(request.args.get('age'))
     if age < 18:
-        data = {"code": 201, "msg": "未成年，禁止访问!"}
+        data = {"note": 201, "msg": "未成年，禁止访问!"}
     elif age >= 18:
-        data = {"code": 200, "msg": "允许访问!"}
+        data = {"note": 200, "msg": "允许访问!"}
     return json.dumps(data)
     # return "欢迎%s" % uname
 
@@ -49,7 +49,7 @@ def post_view():
     elif request.method == 'POST':
         uname = request.form.get('uname')
         age = request.form.get('age')
-        return json.dumps({"code": 200, "msg": "允许访问!"})
+        return json.dumps({"note": 200, "msg": "允许访问!"})
     else:
         pass
 
@@ -67,7 +67,7 @@ def ajax_server_view():
     elif request.method == 'POST':
         # uname = request.form.get('uname')
         uname = request.json.get('uname')
-    return json.dumps({"code": 200, "msg": "OK!"+uname})
+    return json.dumps({"note": 200, "msg": "OK!"+uname})
 
 
 if __name__ == "__main__":

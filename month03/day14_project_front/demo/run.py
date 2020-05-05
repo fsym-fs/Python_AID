@@ -8,7 +8,7 @@ def demo_view():
     return render_template('demo.html')
 @webapp.route('/index')
 def index_view():
-    return render_template('index.html')
+    return render_template('other/index.html')
 
 if __name__ == "__main__":
     webapp.run(debug=True)

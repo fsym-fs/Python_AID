@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sales of agricultural products for poverty alleviation_public_html</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/public.js"></script>
+</head>
+<body>
+
+<nav id="public_header" class="header">
+    <div class="header-top">
+        <div class="container" style="margin-bottom: 0;">
+            <nav class="navbar-inverse navbar-fixed-top " style="background-color:#b5ed94;position: relative">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="/index">首页</a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav header-grid">
+                            <li><a href="#">购物车</a></li>
+                            <li><a href="/personal">关于我</a></li>
+                        </ul>
+                        <div class="header-grid header_log">
+                            <img src="../static/img/四叶草.jpg" class="img-circle" alt="Cinque Terre">
+                        </div>
+                        <div class="header-grid-right">
+                            <a href="/login" class="sign-in">登录</a>
+                            <form>
+                                <input type="text" value="" placeholder="用户名">
+                                <input type="text" value="" placeholder="密码">
+                                <input type="submit" value="Go">
+                            </form>
+                            <label>|</label>
+                            <a href="/register" class="sign-up">注册</a>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </nav>
+            <!--            <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>-->
+            <!--            <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>-->
+            <!--            <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+            <!--            <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+        </div>
+    </div>
+    <div class="container">
+        <div class="header-bottom">
+            <div class="logo">
+                <a href="index.html"><img src="../static/img/fp_logo1.png" alt=" "></a>
+            </div>
+            <div class="title">
+                <a href="index.html"><img src="../static/img/title01.jpg" alt=" "></a>
+            </div>
+            <div class="ad-right">
+                <img class="img-responsive" src="../static/img/ncp_logo1.png" alt=" ">
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="header-bottom-bottom">
+            <div class="top-nav">
+                <span class="menu"> </span>
+                <ul>
+                    <li class="active"><a href="/index">首页</a></li>
+                    <li><a href="men.html">最新商品</a></li>
+                    <li><a href="women.html">所有商品</a></li>
+                    <li><a href="collection.html">分类</a></li>
+                    <li><a href="/about">关于我们</a></li>
+                </ul>
+                <script>
+                    $("span.menu").click(function () {
+                        $(".top-nav ul").slideToggle(500, function () {
+                        });
+                    });
+                </script>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="search">
+                <form>
+                    <input type="text" value="Search" onfocus="this.value = '';"
+                           onblur="if (this.value == '') {this.value = '';}">
+                    <input type="submit" value="">
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="content" style="margin: 19px">
+    <br>
+    <div class="container" style="margin-top: 2%;">
+        <div class="all_goods">
+            <h3 class="pull-left" style="color: red;"> 
+                全部商品&nbsp;
+                <small style="color: red;">1</small>
+            </h3>
+            <div class="pull-right">
+                <h4 class="pull-left" style="padding-top: 5px;">
+                    配 送 至
+                </h4>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <select>
+                    <option value="province">请选择省份</option>
+                </select>
+                &nbsp;
+                <select name="city" id="">
+                    <option value="city">请选择城市</option>
+                </select>
+                &nbsp;
+                <select name="county" id="">
+                    <option value="county">请选择县城</option>
+                </select>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <br>
+        <br>
+        <div class="cart">
+            <table class="table">
+                <caption></caption>
+                <thead>
+                <tr>
+                    <th>全选</th>
+                    <th>商品</th>
+                    <th>单价</th>
+                    <th>数量</th>
+                    <th>小计</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="width: 150px; height: 150px;">
+                        <img style="width: 150px; height: 150px;" src="../static/img/good01.jpg" alt="" srcset="">
+                    </td>
+                    <td>华硕(ASUS) 飞行堡垒7 英特尔酷睿i7 120Hz高速屏游戏笔记本电脑</td>
+                    <td>¥7999.00</td>
+                    <td>1</td>
+                    <td>¥7999.00</td>
+                    <td>
+                        <span>删除</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
+        <div class="paying">
+            <div class="left pull-left">
+                <label>
+                    <input type="checkbox" name="all" id="all">
+                    &nbsp;&nbsp;全选&nbsp;&nbsp;
+                </label>
+                <label>删除选中商品&nbsp;&nbsp;</label>
+                <label>清理购物车&nbsp;&nbsp;</label>
+            </div>
+            <div class="right pull-right">
+                <label>已选择<b style="color: red;">2</b>件商品&nbsp;&nbsp;</label>
+                <label>
+                    总价:
+                    <b style="color: red;">
+                        ¥7999.00&nbsp;&nbsp;
+                    </b>
+                    <span class="glyphicon glyphicon-leaf" aria-hidden="true">&nbsp;&nbsp;</span>
+                </label>
+                <button class="btn btn-danger">去结算</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer id="public_footer" class="footer">
+    <div class="container">
+        <div class="class-footer">
+            <ul>
+                <li><a href="index.html">主页 </a><label>|</label></li>
+                <li><a href="men.html">最新商品</a><label>|</label></li>
+                <li><a href="women.html">所有商品</a><label>|</label></li>
+                <li><a href="collection.html">分类</a><label>|</label></li>
+                <li><a href="collection.html">品牌</a><label>|</label></li>
+                <li><a href="aboutme.html">关于我们</a></li>
+            </ul>
+            <p class="footer-grid">
+                &copy; 2020.随风浅相思 &nbsp;&nbsp; 1085414029@qq.com
+            </p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

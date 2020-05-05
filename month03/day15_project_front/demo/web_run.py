@@ -6,7 +6,7 @@ webapp = Flask(__name__)
 
 @webapp.route('/index')
 @webapp.route('/')
-@webapp.route('/index.html')
+@webapp.route('/music_index.html')
 def index_view():
     return render_template('My_index.html')
 
@@ -23,9 +23,9 @@ def index_data_view():
         size = int(size)
         datas = datas[size:size+10]
     if datas:
-        return json.dumps({"code": 200, "datas": datas})
+        return json.dumps({"note": 200, "datas": datas})
     else:
-        return json.dumps({"code":201,"data":"当前已经没有数据了!"})
+        return json.dumps({"note":201,"data":"当前已经没有数据了!"})
 
 @webapp.route('/add',methods = ['POST','GET'])
 def add_data_view():
@@ -42,7 +42,7 @@ def add_data_view():
         }
         all_data.append(new_data)
         f.write(json.dumps(all_data))
-    return json.dumps({"code":200,"msg":"内容发布完成!"})
+    return json.dumps({"note":200,"msg":"内容发布完成!"})
 
 if __name__ == "__main__":
     webapp.run(debug=True)

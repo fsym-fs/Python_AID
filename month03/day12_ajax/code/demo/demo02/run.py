@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/index', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
-@app.route('/index.html', methods=['GET', 'POST'])
+@app.route('/music_index.html', methods=['GET', 'POST'])
 def get_data():
     """
         flask 允许的响应的类型有字符串，字典，元组和其他封装好的响应类型
@@ -53,8 +53,8 @@ def exer1_server_view():
         uname = request.args.get('uname')
         for i in lis:
             if uname in i:
-                return json.dumps({"code": 1000, "msg": "用户名已存在!"}, separators=(',', ':'))
-        return json.dumps({"code": 1001, "msg": "OK!"}, separators=(',', ':'))
+                return json.dumps({"note": 1000, "msg": "用户名已存在!"}, separators=(',', ':'))
+        return json.dumps({"note": 1001, "msg": "OK!"}, separators=(',', ':'))
     elif request.method == 'POST':
         # # 表单数据
         # uname = request.form.get('uname')

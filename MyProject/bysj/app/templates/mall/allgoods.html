@@ -1,0 +1,83 @@
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
+{% endblock %}
+
+{% block mycontent %}
+
+<!--主体内容-->
+<div class="content">
+    <div class="container">
+        <div class="in-line">
+            <!--导航标签-->
+            <div class="lady-in">
+                {% for i in goods_list %}
+                    <div class="col-md-4 you-para">
+<!--       http://127.0.0.1:5000/single?id=xx                 -->
+                    <a href="http://127.0.0.1:5000/single?gid={{ i['gid'] }}"><img class="img-responsive pic-in mypic" src="../static/goods_pic/{{ i['pic'] }}"
+                                     alt=" "></a>
+                    <p style="text-align: center;">{{ i['name'] }}</p>
+                    <span>&yen;{{ i['price'] }} | <label class="cat-in"> </label> <a
+                            href="#"> 加 入 购 物 车 </a></span>
+                    </div>
+                {% endfor %}
+                <div class="clearfix"></div>
+                <br>
+                <br>
+                <div>
+
+                    <button id="up" class="btn-info pull-left" style="margin-left: 20%">上一页</button>
+                    <h4 class="pull-left" style="margin-left: 24%">第{{ page }}页</h4>
+                    <button id="down" class="btn-info pull-right" style="margin-right: 20%">下一页</button>
+
+                    <div class="clearfix"></div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <script>
+                    $('#up').click(function() {
+                        var num = {{ page }}-1
+                        $.ajax({
+                            type:'post',
+                            data:{page:num},
+                            url:'http://127.0.0.1:5000/all',
+                            // contentType:'application/json',
+                            dataType:'json',
+                            success:function(data){
+                                if(data.code==200){
+                                   var num = data.page
+                                    window.location.href = 'http://127.0.0.1:5000/all?page='+num
+                                }
+                            },
+                            error:function () {
+                                alert('error')
+                            },
+                        });
+                    });
+                    $('#down').click(function() {
+                        var num = {{ page }}+1
+                        $.ajax({
+                            type:'post',
+                            data:{page:num},
+                            url:'http://127.0.0.1:5000/all',
+                            // contentType:'application/json',
+                            dataType:'json',
+                            success:function(data){
+                                if(data.code==200){
+                                   var num = data.page
+                                    window.location.href = 'http://127.0.0.1:5000/all?page='+num
+                                }
+                            },
+                            error:function () {
+                                alert('error')
+                            },
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

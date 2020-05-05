@@ -23,7 +23,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../kjlt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -130,6 +130,7 @@
       <workItem from="1588413884361" duration="5264000" />
       <workItem from="1588473305008" duration="8766000" />
       <workItem from="1588504092929" duration="199000" />
+      <workItem from="1588664054139" duration="334000" />
     </task>
     <servers />
   </component>

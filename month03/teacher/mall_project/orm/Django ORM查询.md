@@ -336,6 +336,10 @@ catalog.spu_set.all()
 ### 查询类别为手提包对应在线的SKU商品
 
 ```mysql
+# 多表联合查询
+SKU.objects.filter(id=2).values('spu__brand__name')
+
+
 catalog = Catalog.objects.get(name='手提包')
 catalog.spu_set.all().values('id')
 for spu_id in spu_ids:

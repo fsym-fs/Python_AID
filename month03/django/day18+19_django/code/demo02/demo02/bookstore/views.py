@@ -34,9 +34,10 @@ def update_book(request, book_id):
             book.save()
         return HttpResponseRedirect('/bookstore/all_books')
 
-def delete_book(request,book_id):
+
+def delete_book(request, book_id):
     # 伪删除
-    books = Book.objects.filter(id=book_id,is_active=True)
+    books = Book.objects.filter(id=book_id, is_active=True)
     if not books:
         return HttpResponse('==no book==')
     book = books[0]
@@ -44,6 +45,5 @@ def delete_book(request,book_id):
     book.save()
 
     return HttpResponseRedirect(reverse('all_books'))
-
 
 

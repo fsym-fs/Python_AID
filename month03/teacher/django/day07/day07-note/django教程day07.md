@@ -21,7 +21,7 @@ from django.shortcuts import render
 def index(request):
     # 时间复杂度极高的渲染
     book_list = Book.objects.all()  #-> 此处假设耗时2s
-    return render(request, 'index.html', locals())
+    return render(request, 'other/index.html', locals())
 ```
 
 优化思想

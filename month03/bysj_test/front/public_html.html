@@ -1,0 +1,148 @@
+
+<div class="header">
+	<div class="header-top">
+		<div class="container" style="margin-bottom: 0px;">
+			<nav class="navbar-inverse navbar-fixed-top ">
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+							data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="index.html">首页</a>
+					</div>
+					<div id="navbar" class="collapse navbar-collapse">
+						<ul class="nav navbar-nav header-grid">
+							<li><a href="#about">购物车</a></li>
+							<li><a href="personal.html">关于我</a></li>
+						</ul>
+						<div class="header-grid header_log">
+							<img src="四叶草.jpg" class="img-circle" alt="Cinque Terre">
+						</div>
+						<div class="header-grid-right">
+							<a href="#" class="sign-in">登录</a>
+							<form>
+								<input type="text" value="用户名" onfocus="this.value='';"
+									onblur="if (this.value == '') {this.value ='';}">
+								<input type="text" value="密码" onfocus="this.value='';"
+									onblur="if (this.value == '') {this.value ='';}">
+								<input type="submit" value="Go">
+							</form>
+							<label>|</label>
+							<a href="signup.html" class="sign-up">注册</a>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+			</nav>
+			<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+			<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+			<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+		</div>
+	</div>
+	<div class="container">
+		<div class="header-bottom">
+			<div class="logo">
+				<a href="index.html"><img src="images/fp_logo1.png" alt=" "></a>
+			</div>
+			<div class="title">
+				<a href="index.html"><img src="images/title01.jpg" alt=" "></a>
+			</div>
+			<div class="ad-right">
+				<img class="img-responsive" src="images/ncp_logo1.png" alt=" ">
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="header-bottom-bottom">
+			<div class="top-nav">
+				<span class="menu"> </span>
+				<ul>
+					<li class="active"><a href="index.html">首页</a></li>
+					<li><a href="men.html">最新商品</a></li>
+					<li><a href="women.html">所有商品</a></li>
+					<li><a href="collection.html">分类</a></li>
+					<li><a href="aboutme.html">关于我们</a></li>
+				</ul>
+				<script>
+					$("span.menu").click(function () {
+						$(".top-nav ul").slideToggle(500, function () {
+						});
+					});
+				</script>
+
+				<div class="clearfix"> </div>
+			</div>
+			<div class="search">
+				<form>
+					<input type="text" value="Search" onfocus="this.value = '';"
+						onblur="if (this.value == '') {this.value = '';}">
+					<input type="submit" value="">
+				</form>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<div class="container bg">
+		<div class="register">
+			<form>
+				<div class="register-top-grid  myset">
+					<h3>个人信息</h3>
+					<div class="mation">
+						<p style="margin-top: 3%;"></p>
+
+						<img src="四叶草.jpg" class="img-circle header_pic">
+						
+						<input type="file" id="header_image" name="test" accept="image/gif, image/jpeg, image/png, image/jpg" style="margin-left: 35%;">
+
+						<span>id<label>*</label></span>
+						<input type="text" maxlength="11" disabled value="223751093" style="text-align: center;">
+
+						<span>用户名<label>*</label></span>
+						<input type="text" maxlength="11""> 
+				
+						<span>密码<label>*</label></span>
+						<input type=" password" maxlength="11">
+
+						<span>邮箱地址<label>*</label></span>
+						<input type="email" disabled value="223751093@qq.com" style="text-align: center;">
+
+						<span>收货地址<label>*</label></span>
+						<input type="text">
+					</div>
+					<div class="clearfix"> </div>
+					<a class="news-letter" href="#">
+						<label class="checkbox  myset">
+							<input type="checkbox" name="checkbox" checked="">
+							<i style="margin-left:45%;"> </i>
+							修改
+						</label>
+					</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</div>
+<div class="footer">
+	<div class="container">
+		<div class="class-footer">
+			<ul>
+				<li><a href="index.html">主页 </a><label>|</label></li>
+				<li><a href="men.html">最新商品</a><label>|</label></li>
+				<li><a href="women.html">所有商品</a><label>|</label></li>
+				<li><a href="collection.html">分类</a><label>|</label></li>
+				<li><a href="collection.html">品牌</a><label>|</label></li>
+				<li><a href="aboutme.html">关于我们</a></li>
+			</ul>
+			<p class="footer-grid">
+				&copy; 2020.随风浅相思 &nbsp;&nbsp; 1085414029@qq.com
+			</p>
+		</div>
+	</div>
+</div>
+

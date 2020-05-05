@@ -3,30 +3,11 @@ import sys
 from app import *
 from app.my_views import *
 from flask import url_for
+
 from app.users.views import *
-from app.admin.views import *
 
 
-@webapp.route('/admin/login', methods=['GET', 'POST'])
-def admin_login():
-    url_for(sys._getframe().f_code.co_name)
-    return admin_login_view()
-
-
-@webapp.route('/admin/index', methods=['GET', 'POST'])
-def admin_index():
-    url_for(sys._getframe().f_code.co_name)
-    return admin_index_view()
-
-
-@webapp.route('/admin/home', methods=['GET', 'POST'])
-def admin_home():
-    url_for(sys._getframe().f_code.co_name)
-    return admin_home_view()
-
-
-# ----------------------------------------------------------------------------
-@webapp.route('/public', methods=['GET', 'POST'])
+@webapp.route('/public')
 def public():
     url_for(sys._getframe().f_code.co_name)
     return public_view()
@@ -81,19 +62,20 @@ def test():
     return test_view()
 
 
-# # 查询
-# @webapp.route('/user')
-# def users():
-#     url_for(sys._getframe().f_code.co_name)
-#     return users_view()
-
-# @webapp.route('/user/<int:id>')
-# def user(id):
-#     url_for(sys._getframe().f_code.co_name, name=id)
-#     return user_view(id)
-
-
-@webapp.route('/pa')
-def pa():
+# 查询
+@webapp.route('/user')
+def users():
     url_for(sys._getframe().f_code.co_name)
-    return pa_view()
+    return users_view()
+
+
+@webapp.route('/user/<int:id>')
+def user(id):
+    url_for(sys._getframe().f_code.co_name, name=id)
+    return user_view(id)
+
+
+@webapp.route('/persons')
+def persons():
+    url_for(sys._getframe().f_code.co_name)
+    return person_view()

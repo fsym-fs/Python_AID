@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+<body>
+
+
+
+
+
+
+    <script>
+    var m=window.location.search
+    // var userId=window.localStorage.getItem('token')获取token，后端通过token取得user
+    var userId=1
+            if(m){
+                gid=m.split('=')[1]
+            }else{alert('error')}
+            console.log(gid)
+            console.log(userId)
+            $.ajax({
+                url:'http://127.0.0.1:8000/me/goodbuyview?id='+gid+'&userid='+userId,
+                dataType:'json',
+                type:'get',
+                success:function(re){
+                    console.log(re)
+                }
+
+
+            })
+
+    </script>
+</body>
+</html>

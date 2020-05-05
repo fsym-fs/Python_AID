@@ -1,4 +1,4 @@
-cartdata={
+var cartdata={
     "username":"dongdong",
     "cart":[
         {

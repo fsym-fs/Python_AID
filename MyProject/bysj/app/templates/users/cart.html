@@ -1,0 +1,231 @@
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
+{% endblock %}
+
+{% block mycontent %}
+    <!--主体内容-->
+    <div class="content" style="margin: 19px">
+        <br>
+        <div class="container" style="margin-top: 2%;">
+            <div class="all_goods">
+                <h3 class="pull-left" style="color: red;"> 
+                    全部商品&nbsp;
+                    <small style="color: red;">{{ count }} 件</small>
+                </h3>
+                <!--
+                <div class="pull-right">
+                    <h4 class="pull-left" style="padding-top: 5px;">
+                        配 送 至
+                    </h4>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <select>
+                        <option value="province">请选择省份</option>
+                    </select>
+                    &nbsp;
+                    <select name="city">
+                        <option value="city">请选择城市</option>
+                    </select>
+                    &nbsp;
+                    <select name="county">
+                        <option value="county">请选择县城</option>
+                    </select>
+                    <input type="text" placeholder="具体地址">
+                </div>
+                -->
+                <div class="clearfix"></div>
+            </div>
+            <br>
+            <br>
+            <div class="cart">
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">选择</th>
+                        <th style="text-align: center"></th>
+                        <th style="text-align: center">商品</th>
+                        <th style="text-align: center">单价</th>
+                        <th style="text-align: center">数量</th>
+                        <th style="text-align: center">小计</th>
+                        <th style="text-align: center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if carts %}
+                        {% for item in carts %}
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <input type="checkbox" id="add_{{ item['gid'] }}" name="add_one" value="{{ item['gid'] }}">
+                                </td>
+                                <script>
+                                    all_result = 0
+                                    sel_count = 0
+                                    $('#add_{{ item['gid'] }}').click(function () {
+                                        var status = $('#add_{{ item['gid'] }}').prop("checked")
+                                        if(status){
+                                            console.log({{ item['all_price'] }})
+                                            var money =  {{ item['all_price'] }}
+                                            all_result += money;
+                                            $('#all_result').html(all_result);
+                                            sel_count += 1
+                                            $('#sel_count').html(sel_count)
+                                        }
+                                        else {
+                                            var money =  {{ item['all_price'] }}
+                                            all_result -= money;
+                                            $('#all_result').html(all_result);
+                                            sel_count -= 1
+                                            $('#sel_count').html(sel_count)
+                                        }
+                                    });
+                                </script>
+                                <td style="width: 150px; height: 150px;">
+                                    <img style="width: 150px; height: 150px;" src="../static/goods_pic/{{ item['pic'] }}" alt="" srcset="">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle;">{{ item['name'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">¥{{ item['price'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{ item['num'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">¥{{ item['all_price'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">
+                                    <button class="btn btn-danger" id="{{ item['gid'] }}">删除</button>                                    
+                                    <script>
+ 
+                                        $('#'+{{ item['gid'] }}).click(function () {
+                                            console.log({{ item['gid'] }});
+                                            var gid = {{ item['gid'] }};
+                                            $.ajax({
+                                                type:'DELETE',
+                                                url:'http://127.0.0.1:5000/cart',
+                                                data:JSON.stringify({
+                                                    'uname':window.localStorage.getItem('uname'),
+                                                    'gid':gid,                                                    
+                                                }),
+                                                contentType:'application/json',
+                                                dataType:'json',
+                                                success:function(data){
+                                                    if(data.code == 200){
+                                                        alert('移除成功!');
+                                                        window.location.reload()
+                                                    }
+                                                },
+                                                error:function(){
+                                                        console.log('error')
+                                                },
+                                            });
+                                            // var chk_value =[];//定义一个数组    
+                                            // $('input[name="add_one"]:checked').each(function(){
+                                            //     //遍历每一个名字为interest的复选框，其中选中的执行函数    
+                                            //     chk_value.push($(this).val());//将选中的值添加到数组chk_value中    
+                                            // });
+                                            // alert(chk_value); 
+
+                                        });
+
+                                    </script>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            {% if not carts %}
+                <br><br><br><br><br><br>
+            {% endif %}
+            <br><br>
+            <div class="paying">
+                <div class="left pull-left">
+                    <!-- <label>
+                        <input type="checkbox" name="del_all" id="del_all">
+                        &nbsp;&nbsp;全选&nbsp;&nbsp;
+                    </label>
+                    <script> 
+                        $('#del_all').click(function(){
+                            if ($(this).prop("checked")) {
+                                alert("选中");
+                                //遍历每一个名字为interest的复选框，其中选中的执行函数
+                                // console.log('556') 
+                                $('input[name="add_one"]').each(function(){
+                                    console.log('789')
+                                    $(this).attr('checked',true);
+                                    alert($(this).val())
+                                })                                    
+                            } 
+                            else {
+                                alert("没有选中");
+                                $('input[name="add_one"]').each(function(){
+                                        console.log('789')
+                                        $(this).attr('checked',false);
+                                        // alert($(this).val())
+                                })  
+                            }
+                        });                        
+                    </script> -->
+                    <button id="del_opc" class="btn btn-danger">删除选中商品&nbsp;&nbsp;</button>
+                    <script>
+                        $('#del_opc').click(function(){
+                            var gid_lis = []
+                            $('input[name="add_one"]:checked').each(function(){
+                            //遍历每一个名字为interest的复选框，其中选中的执行函数 
+                                gid_lis.push($(this).val())
+                            });
+                            console.log(gid_lis)
+                            $.ajax({
+                                type:'DELETE',
+                                url:'http://127.0.0.1:5000/cart',
+                                data:JSON.stringify({
+                                    'uname':window.localStorage.getItem('uname'),
+                                    'gid_lis':gid_lis,
+                                }),
+                                contentType:'application/json',
+                                dataType:'json',
+                                success:function(data){
+                                    if(data.code == 200){
+                                        alert('移除成功!');
+                                        window.location.reload()
+                                    }
+                                },
+                                error:function(){
+                                        console.log('error')
+                                },
+                            });
+                        })
+                    </script>
+                    <!-- <label class="btn btn-danger">取消全选&nbsp;&nbsp;</label> -->
+                </div>
+                <div class="right pull-right">
+                    <label>已选择&nbsp;<b style="color: red;" id="sel_count">0</b>&nbsp;件商品&nbsp;&nbsp;&nbsp;</label>
+                    <label>
+                        总价:
+                        <b id="all_result" style="color: red;">
+                            ¥&nbsp;0
+                        </b>
+                        <span class="glyphicon glyphicon-leaf" aria-hidden="true">&nbsp;&nbsp;</span>
+                    </label>
+                    <button id="go_paying" class="btn btn-warning">去结算</button>
+                    <script>
+                        $('#go_paying').click(function () {
+                            console.log('556')
+                            var gid_str = ''
+                            $('input[name="add_one"]:checked').each(function(){
+                            //遍历每一个名字为interest的复选框，其中选中的执行函数
+                                str = $(this).val()
+                                gid_str += str+'_'
+                            });
+                            gid_str += window.localStorage.getItem('uname')
+                            console.log(gid_str)
+                            window.location.href = 'http://127.0.0.1:5000/paying?uname='+window.localStorage.getItem('uname')+'&gid_str='+gid_str
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+
+{% endblock %}
+
+
