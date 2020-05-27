@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../static/assets/css/layui.css">
+    <link rel="stylesheet" href="../../static/assets/css/view.css"/>
+    <link rel="icon" href="../../static/favicon.ico">
+    <title>管理后台</title>
+</head>
+<body class="layui-view-body">
+<div class="layui-content">
+    <div class="layui-page-header">
+        <div class="pagewrap">
+                <span class="layui-breadcrumb">
+                  <a href="">首页</a>
+                  <a href="">商品</a>
+                  <a><cite>商品组</cite></a>
+                </span>
+            <h2 class="title">商品组</h2>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-card">
+            <div class="layui-card-body">
+                <div class="form-box">
+                    <div class="layui-form layui-form-item">
+                        <div class="layui-inline">
+                            <div class="layui-form-mid">商品编号:</div>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input id="find_gid" type="text" autocomplete="off" class="layui-input">
+                            </div>
+                            <button id="del_user" class="layui-btn layui-btn-red">删除</button>
+                        </div>
+                    </div>
+                    <a href="http://127.0.0.1:5000/admin/goods/form" class="layui-btn layui-btn-blue">
+                        <i class="layui-icon">&#xe654;</i>新增
+                    </a>
+
+                    <table id="demo"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../static/assets/layui.all.js"></script>
+<script src="../../static/js/jquery.min.js"></script>
+<script>
+    $('#del_user').click(function(){
+        $.ajax({
+            type:'delete',
+            url:'http://127.0.0.1:5000/admin/goods/home',
+            data:JSON.stringify({
+                'g_id':$('#find_gid').val(),
+            }),
+            dataType:'json',
+            contentType:'application/json',
+            success:function(data){
+                if(data.code == 200){
+                    alert('删除成功!');
+                    window.location.href = 'http://127.0.0.1:5000/admin/goods/home';
+                }
+                else{
+                    alert(data.error);
+                }
+            },
+            error:function(){
+                console.log('123456');
+            },
+        });
+    });
+</script>
+<script>
+    var element = layui.element;
+    var table = layui.table;
+    var form = layui.form;
+    //展示已知数据
+    table.render({
+        elem: '#demo',
+        cols: [[ //标题栏
+            {field: 'gid', title: 'ID', sort: true},
+            {field: 'name', title: '商品名'},
+            {field: 'title', title: '商品标题'},
+            {field: 'price', title: '商品售价',sort:true},            
+            {field: 'weight', title: '商品重量'},
+            {field: 'inventory', title: '商品库存'},
+            {field: 'loc', title: '商品产地'},            
+            {field: 'is_active', title: '是否激活'}
+        ]],
+        //数据接口
+        url: 'http://127.0.0.1:5000/admin/goods/home', 
+        method:'post',
+        contentType: 'application/json',
+        skin: 'line', //表格风格
+        even: true,
+        page: false, //是否显示分页
+        limits: [5, 7, 10],
+        limit: 5, //每页默认显示的数量
+    });
+</script>
+</body>
+</html>

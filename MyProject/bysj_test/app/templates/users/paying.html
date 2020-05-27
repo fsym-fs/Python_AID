@@ -1,0 +1,126 @@
+{% extends 'public_html.html' %}
+
+{% block mystyle %}
+{% endblock %}
+
+{% block mycontent %}
+    <!--主体内容-->
+    <br><br>
+    <div id="navlist">
+        <ul>
+            <li class="navlist_blue_left"></li>
+            <li class="navlist_blue">确认订单信息</li>
+{#            <li class="navlist_gray">#}
+{#                <input type="text" placeholder="请输入您的地址">#}
+{#                <input type="text" placeholder="请输入您的地址">#}
+{#            </li>#}
+            <!--
+            <li class="navlist_blue_arro"><canvas id="canvas_blue" width="20" height="38"></canvas>
+            </li>
+            <li class="navlist_gray">支付订单<b></b></li>
+            <li class="navlist_gray_arro"><canvas id="canvas_gray" width="20" height="38"></canvas>
+            </li>
+            <li class="navlist_gray">支付完成<b></b></li>
+            <li class="navlist_gray_right"></li>
+            -->
+        </ul>
+    </div>
+    <!--订单确认-->
+    <div id="container" class="clear">
+        <!--收货地址-->
+        <div class="adress_choice">
+            <div class="form-inline">
+              <div class="form-group">
+                <label for="receiver">收件人:</label>
+                <input type="text" class="form-control" id="receiver" placeholder="收件人">
+              </div>
+                &nbsp;&nbsp;
+              <div class="form-group">
+                <label for="receiverphone">手机号码:</label>
+                <input type="number" class="form-control" id="receiverphone" placeholder="联系号码">
+              </div>
+                &nbsp;&nbsp;
+              <div class="form-group">
+                <label for="receiveraddress">收件地址:</label>
+                <input type="text" class="form-control" id="receiveraddress" placeholder="收件地址">
+              </div>
+            </div>
+        </div>
+        <!-- 商品信息-->
+        <div class="cart">
+                <table class="table">
+                    <caption></caption>
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">订单号</th>
+                        <th style="text-align: center">示意图</th>
+                        <th style="text-align: center">商品</th>
+                        <th style="text-align: center">单价</th>
+                        <th style="text-align: center">数量</th>
+                        <th style="text-align: center">小计</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if carts_list %}
+                        {% for item in carts_list %}
+                            <tr>
+                                <td style="text-align: center; vertical-align: middle;">{{ oid }}</td>
+                                <td style="width: 150px; height: 150px;">
+                                    <img style="width: 150px; height: 150px;" src="../static/goods_pic/{{ item['pic'] }}" alt="" srcset="">
+                                </td>
+                                <td style="text-align: center; vertical-align: middle;">{{ item['name'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">¥{{ item['price'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">{{ item['num'] }}</td>
+                                <td style="text-align: center; vertical-align: middle;">¥{{ item['account'] }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        <!-- 结算条-->
+        <div id="count_bar">
+            <span class="go_cart"><a href="http://127.0.0.1:5000/cart?uname={{ usname }}">&lt;&lt;返回购物车</a></span>
+            <span class="count_bar_info">共<b id="count"> {{ all_num }} </b>件商品&nbsp;&nbsp;合计:<b class="zj"></b> <input
+                    type="hidden" name="Payment" value="" />{{ result }}元</span>
+            <span class="go_pay" id="go_pay">确认并付款</span>
+        </div>
+    </div>
+    <!--标题栏-->
+    <br><br><br>
+    <br><br><br><br><br><br>
+    <script>
+        $('#go_pay').click(function () {
+            var oid = '{{ oid }}'
+            var result = {{ result }}
+            var name = $('#receiver').val()
+            var phone = $('#receiverphone').val()
+            var address = $('#receiveraddress').val()
+            $.ajax({
+                type:'post',
+                url:'http://127.0.0.1:5000/paying',
+                contentType:'application/json',
+                dataType:'json',
+                data:JSON.stringify({
+                    'oid':oid,
+                    'result':result,
+                    'name':name,
+                    'phone':phone,
+                    'address':address,
+                    'uname':window.localStorage.getItem('uname'),
+                }),
+                success:function (data) {
+                    if(data.code == 200){
+                        window.location = data.pay_url
+                    }
+                },
+                error:function () {
+                    alert('服务器正忙!')
+                },
+            });
+        });
+        {#alert({{ oid }})#}
+    </script>
+{% endblock %}
+
+
