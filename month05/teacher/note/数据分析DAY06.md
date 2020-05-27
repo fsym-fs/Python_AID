@@ -72,7 +72,7 @@ dataFrame.plot.pie(subplots=True, figsize=(6, 6), layout=(2, 2))
 
 箱线图
 
-![](C:/Users/xuming/Desktop/20.04%E7%A0%94%E5%8F%91/%E6%96%B0%E7%89%88%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%AF%BE%E4%BB%B6/images/%E7%AE%B1%E7%BA%BF%E5%9B%BE.png)
+![](../images/%E7%AE%B1%E7%BA%BF%E5%9B%BE.png)
 
 ```python
 # 箱线图

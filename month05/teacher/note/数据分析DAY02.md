@@ -124,6 +124,7 @@ s1.shape
 dates = pd.Series(['2011', '2011-02', '2011-03-01', '2011/04/01', 
                    '2011/05/01 01:01:01', '01 Jun 2011'])
 # to_datetime() 转换日期数据类型
+# 精确到纳秒,输出到秒
 dates = pd.to_datetime(dates)
 print(dates, dates.dtype, type(dates))
 # 获取时间的某个日历字段的数值
@@ -140,6 +141,7 @@ Series.dt.hour	The hours of the datetime.
 Series.dt.minute	The minutes of the datetime.
 Series.dt.second	The seconds of the datetime.
 Series.dt.microsecond	The microseconds of the datetime.
+＃　一年的第几周
 Series.dt.week	The week ordinal of the year.
 Series.dt.weekofyear	The week ordinal of the year.
 Series.dt.dayofweek	The day of the week with Monday=0, Sunday=6.
@@ -434,21 +436,21 @@ IPython 是一个 python 的交互式 shell，比默认的python shell 好用得
 **安装Jupyter notebook**
 
 ```python
-pip install jupyter  -i  https://pypi.tuna.tsinghua.edu.cn/simple/
-pip install tornado==  5.1.1
+pip3 install jupyter  -i  https://pypi.tuna.tsinghua.edu.cn/simple/
 ```
 
 **启动Jupyter notebook**
 
 ```
 jupyter notebook
+
 ```
 
 
 
 ### 数据加载
 
-![](../images/IOtools.png)
+![](../../images/IOtools.png)
 
 #### 处理普通文本
 
